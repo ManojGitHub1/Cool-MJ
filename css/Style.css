@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    color: #40514e;
+}
+h1 {
+    margin: 10px auto 0 auto;
+    font-family: 'Sacramento', cursive;
+    /* font-size: 5.625rem;  */
+    font-size: 90px;
+    color: #66bfbf;
+    /* font-size: 90px; 16px = 100% = 1em */
+    /* other way to center
+    width: 10%;
+    margin: 0 auto 0 auto;
+    top right bottom left*/
+}
+h2 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 22px;
+    color: #66bfbf;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #11999e;
+}
+p {
+    line-height: 2;
+}
+hr {
+    /* border-style: none;
+    border-top-style: dotted;
+    border-color: grey;
+    border-width: 5px; */
+    border: dotted #eaf6f6 6px;
+    border-bottom: none;
+    width: 5%;
+    margin: 70px auto; /*top-bottom & left-right*/
+}
+a {
+    color: #11999e;
+    font-family: 'Montserrat', sans-serif; 
+    margin: 10px 20px;
+    text-decoration: none;
+}
+a:hover {
+    color: #eaf6f6;
+}
+
+.top-container {
+    background-color: #E4F9F5;
+    position: relative;
+    padding-top: 200px;
+    
+}
+
+.middle-container {
+    /* display: inline block;
+    displays all tag in one line */
+    margin: 100px 0;
+}
+.bottom-container {
+    background-color: #66bfbf;
+    padding: 40px 0 10px;
+}
+.pro {
+    text-decoration: underline;
+}
+.top-cloud {
+    position: absolute;
+    right: 400px;
+    top: 40px;
+}
+.bottom-cloud {
+    position:absolute;
+    left: 250px;
+    bottom: 300px;
+}
+.pimg {
+    width: 150px;
+    border-radius: 8%;
+}
+.simg {
+    /* width: 150px; */
+    width: 20%;
+    border-radius: 5%;
+    float: left;
+    margin-right: 30px;
+}
+.srimg {
+    width: 20%;
+    border-radius: 5%;
+    float: right; /* wraps text to right*/
+    margin-left: 30px;
+}
+.skill-row {
+    width: 50%;
+    margin: 50px auto 50px auto;
+    text-align: left;
+}
+
+
+.intro {
+    width: 30%;
+    margin: auto;
+}
+.contact-me {
+    width: 50%;
+    margin: 40px auto 60px;/* top left-right bottom*/
+}
+.btn {
+    background: #11cdd4;
+    background-image: -webkit-linear-gradient(top, #11cdd4, #119998);
+    background-image: -moz-linear-gradient(top, #11cdd4, #119998);
+    background-image: -ms-linear-gradient(top, #11cdd4, #119998);
+    background-image: -o-linear-gradient(top, #11cdd4, #119998);
+    background-image: linear-gradient(to bottom, #11cdd4, #119998);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif; 
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #30e3cb;
+    background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+    text-decoration: none;
+  }
+.copyright {
+    color: #eaf6f6;
+    padding: 20px 0;
+}
+/* .code-skill-description {
+    clear: left;
+}
+.travel-skill-description {
+    clear: right; /* prevents wraping the text
+} */
+/* The Box Model
+Margin border padding element(box) */
+
+/* Displays types:-
+1). inline 
+2). block
+3). inline-block
+4). None
+1).inline display attribute are html tags which
+displays tags in one line
+e.g:- <spam>,<img>
+only problem is the width of inline 
+tags cannot be changed
+2).block display attribute are the one which take 
+entire line of website and width can be 
+changed
+e.g:- <p>, <h1>
+3).inline-block display attribute are the 
+one which are block are in one line
+and whose width can be changed.
+4).None display attribute removes the element from the 
+website
+visibility attribute keeps the shadow of elements
+*/
+ 
