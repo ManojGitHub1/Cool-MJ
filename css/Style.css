@@ -10,11 +10,6 @@ h1 {
     /* font-size: 5.625rem;  */
     font-size: 90px;
     color: #66bfbf;
-    /* font-size: 90px; 16px = 100% = 1em */
-    /* other way to center
-    width: 10%;
-    margin: 0 auto 0 auto;
-    top right bottom left*/
 }
 h2 {
     font-family: 'Montserrat', sans-serif; 
@@ -31,14 +26,10 @@ p {
     line-height: 2;
 }
 hr {
-    /* border-style: none;
-    border-top-style: dotted;
-    border-color: grey;
-    border-width: 5px; */
     border: dotted #eaf6f6 6px;
     border-bottom: none;
     width: 5%;
-    margin: 70px auto; /*top-bottom & left-right*/
+    margin: 70px auto; 
 }
 a {
     color: #11999e;
@@ -58,8 +49,6 @@ a:hover {
 }
 
 .middle-container {
-    /* display: inline block;
-    displays all tag in one line */
     margin: 100px 0;
 }
 .bottom-container {
@@ -84,7 +73,6 @@ a:hover {
     border-radius: 8%;
 }
 .simg {
-    /* width: 150px; */
     width: 20%;
     border-radius: 5%;
     float: left;
@@ -93,7 +81,7 @@ a:hover {
 .srimg {
     width: 20%;
     border-radius: 5%;
-    float: right; /* wraps text to right*/
+    float: right; 
     margin-left: 30px;
 }
 .skill-row {
@@ -109,7 +97,7 @@ a:hover {
 }
 .contact-me {
     width: 50%;
-    margin: 40px auto 60px;/* top left-right bottom*/
+    margin: 40px auto 60px;
 }
 .btn {
     background: #11cdd4;
@@ -141,34 +129,4 @@ a:hover {
     color: #eaf6f6;
     padding: 20px 0;
 }
-/* .code-skill-description {
-    clear: left;
-}
-.travel-skill-description {
-    clear: right; /* prevents wraping the text
-} */
-/* The Box Model
-Margin border padding element(box) */
-
-/* Displays types:-
-1). inline 
-2). block
-3). inline-block
-4). None
-1).inline display attribute are html tags which
-displays tags in one line
-e.g:- <spam>,<img>
-only problem is the width of inline 
-tags cannot be changed
-2).block display attribute are the one which take 
-entire line of website and width can be 
-changed
-e.g:- <p>, <h1>
-3).inline-block display attribute are the 
-one which are block are in one line
-and whose width can be changed.
-4).None display attribute removes the element from the 
-website
-visibility attribute keeps the shadow of elements
-*/
  
