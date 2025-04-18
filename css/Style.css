@@ -7,13 +7,13 @@ body {
 h1 {
     margin: 10px auto 0 auto;
     font-family: 'Sacramento', cursive;
-    /* font-size: 5.625rem;  */
-    font-size: 90px;
+    font-size: 90px; /* Kept original size */
     color: #66bfbf;
+    line-height: 1.2; /* Added for potentially better spacing */
 }
 h2 {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px; /* Kept original size */
     color: #66bfbf;
     font-weight: normal;
     padding-bottom: 10px;
@@ -21,6 +21,14 @@ h2 {
 h3 {
     font-family: 'Montserrat', sans-serif;
     color: #11999e;
+    font-size: 1.8rem; /* Slightly larger for section titles */
+}
+/* Added style for new H4 used in Skills/Projects */
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: #11999e; /* Match H3 color */
+    font-size: 1.3rem;
+    margin-bottom: 5px; /* Adjust spacing */
 }
 p {
     line-height: 2;
@@ -29,28 +37,42 @@ hr {
     border: dotted #eaf6f6 6px;
     border-bottom: none;
     width: 5%;
-    margin: 70px auto; 
+    margin: 70px auto; /* Kept original margin */
 }
 a {
     color: #11999e;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     margin: 10px 20px;
     text-decoration: none;
+    transition: color 0.3s ease; /* Added subtle transition */
 }
 a:hover {
-    color: #eaf6f6;
+    color: #eaf6f6; /* Kept original hover color for footer */
 }
+
+/* Specific link hover for main content */
+main a:not(.btn):hover {
+  color: #30e3cb; /* Use a brighter hover color from button */
+  /* text-decoration: underline; Optional: add underline on hover */
+}
+
 
 .top-container {
     background-color: #E4F9F5;
     position: relative;
-    padding-top: 200px;
-    
+    padding-top: 150px; /* Reduced padding slightly */
+    padding-bottom: 0; /* Remove bottom padding as mountain is the base */
 }
 
-.middle-container {
+/* Renamed middle-container to represent sections better */
+.middle-container-section {
     margin: 100px 0;
 }
+/* Target profile specifically if needed */
+.profile {
+    /* Specific profile styles if any */
+}
+
 .bottom-container {
     background-color: #66bfbf;
     padding: 40px 0 10px;
@@ -60,43 +82,76 @@ a:hover {
 }
 .top-cloud {
     position: absolute;
-    right: 400px;
+    right: 400px; /* Adjust positioning as needed for responsiveness later */
     top: 40px;
+    width: 150px; /* Give clouds a size */
 }
 .bottom-cloud {
-    position:absolute;
-    left: 250px;
-    bottom: 300px;
+    position: absolute;
+    left: 250px; /* Adjust positioning */
+    bottom: 250px; /* Adjust positioning relative to mountain */
+     width: 150px; /* Give clouds a size */
 }
+/* Added class for mountain specifically */
+.mountain-img {
+    /* Ensure mountain image is displayed correctly */
+    display: block; /* Removes any extra space below */
+    margin: 0 auto; /* Center if needed */
+    padding-top: 30px; /* Space between text and mountain */
+    width: 70%; /* Example size, adjust as needed */
+    max-width: 700px; /* Max size */
+}
+
 .pimg {
-    width: 150px;
-    border-radius: 8%;
+    width: 150px; /* Kept original size */
+    border-radius: 50%; /* Make profile picture circular - common practice */
+    margin-bottom: 20px; /* Add space below image */
 }
 .simg {
-    width: 20%;
+    width: 20%; /* Kept original size */
+    max-width: 100px; /* Add max width */
     border-radius: 5%;
     float: left;
     margin-right: 30px;
 }
 .srimg {
-    width: 20%;
+    width: 20%; /* Kept original size */
+    max-width: 100px; /* Add max width */
     border-radius: 5%;
-    float: right; 
+    float: right;
     margin-left: 30px;
 }
 .skill-row {
-    width: 50%;
-    margin: 50px auto 50px auto;
+    width: 50%; /* Kept original size */
+    margin: 50px auto 100px auto; /* Increased bottom margin for spacing */
     text-align: left;
+    overflow: hidden; /* Add clearfix for floated elements */
+}
+
+/* Styling for technology list */
+.technologies {
+    font-size: 0.9rem;
+    color: #40514e;
+    clear: both; /* Ensure it appears below floated images */
+    padding-top: 10px;
+}
+.technologies span {
+    display: inline-block;
+    background-color: #eaf6f6;
+    padding: 3px 8px;
+    margin: 3px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
 .intro {
-    width: 30%;
+    width: 40%; /* Slightly wider */
     margin: auto;
 }
-.contact-me {
-    width: 50%;
+/* Renamed class */
+.contact-message {
+    width: 50%; /* Kept original size */
     margin: 40px auto 60px;
 }
 .btn {
@@ -109,13 +164,16 @@ a:hover {
     -webkit-border-radius: 8;
     -moz-border-radius: 8;
     border-radius: 8px;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     color: #ffffff;
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease; /* Added transition */
+    display: inline-block; /* Ensure transforms work */
+    margin-top: 20px; /* Add space above button */
   }
-  
+
   .btn:hover {
     background: #30e3cb;
     background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
@@ -124,9 +182,130 @@ a:hover {
     background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
     background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
     text-decoration: none;
+    color: #fff; /* Ensure text color stays white on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
   }
 .copyright {
     color: #eaf6f6;
     padding: 20px 0;
+    font-size: 0.85rem; /* Slightly smaller */
 }
- 
+
+/* NEW Styles for Projects Section */
+.projects {
+    /* Consistent section styling */
+}
+
+.section-intro {
+    width: 50%;
+    margin: 0 auto 40px auto;
+    font-style: italic;
+    color: #6c7a89; /* Subtler color */
+}
+
+.project-item {
+    width: 60%; /* Slightly wider than skill-row for content */
+    margin: 50px auto;
+    text-align: left;
+    background-color: #f8f9fa; /* Subtle background to differentiate */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+    overflow: hidden; /* Contains floats/margins */
+}
+
+.project-img {
+    width: 40%; /* Adjust as needed */
+    max-width: 250px;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 15px; /* Space below image on small screens */
+    border-radius: 5px;
+    border: 1px solid #eaf6f6; /* Subtle border */
+}
+
+.project-description {
+    /* Use default paragraph styling */
+    margin-bottom: 15px;
+}
+
+.project-tech {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    clear: both; /* Ensure it's below image if text is short */
+}
+.project-tech strong {
+    color: #11999e; /* Use accent color */
+}
+
+.project-links {
+    /* No specific styles needed unless you want to align buttons */
+     text-align: left; /* Align links left */
+     margin-top: 10px;
+     clear: both;
+}
+
+.project-link {
+    /* Style links like small buttons or distinct text */
+    background-color: #66bfbf;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 10px; /* Space between links */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Allow padding and margin */
+    margin-bottom: 5px; /* Spacing if they wrap */
+}
+
+.project-link:hover {
+    background-color: #11999e; /* Darker shade on hover */
+    color: #ffffff; /* Ensure text remains white */
+    text-decoration: none;
+}
+
+/* Basic Responsiveness (Add more comprehensive rules as needed) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 60px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .top-cloud, .bottom-cloud {
+        /* Hide clouds or reposition drastically */
+        display: none; /* Simplest option */
+    }
+    .skill-row, .intro, .contact-message, .project-item, .section-intro {
+        width: 85%; /* Use more screen width */
+    }
+    .simg, .srimg, .project-img {
+        float: none; /* Stack images above text */
+        display: block;
+        margin: 0 auto 20px auto; /* Center image */
+        width: 40%; /* Adjust size */
+        max-width: 150px; /* Limit max size */
+    }
+    .skill-row, .project-item {
+        text-align: center; /* Center text below image */
+    }
+     .project-links {
+        text-align: center; /* Center links below text */
+     }
+    .technologies, .project-tech {
+        text-align: center;
+    }
+    hr {
+        width: 15%;
+        margin: 50px auto;
+    }
+    .mountain-img {
+        width: 90%; /* Mountain takes more width */
+        padding-top: 40px;
+    }
+    footer a {
+        margin: 5px 10px; /* Reduce footer link margin */
+        display: inline-block; /* Ensure they space correctly */
+    }
+}
