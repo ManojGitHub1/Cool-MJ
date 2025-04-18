@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Zone | Manoj</title>
+  <link rel="stylesheet" href="../css/developer.css">
+  <script src="../js/script.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div class="toggle-switch">☾ Dark Mode</div>
+
+  <header class="dev-header">
+    <div class="overlay">
+      <h1>Hello, I'm <span class="typed-name"></span></h1>
+      <h2 class="typing">Full-Stack Developer | Cloud Enthusiast | UI/UX Explorer</h2>
+      <p class="header-tagline">
+        I build beautiful, scalable, and performance-driven digital solutions using modern technologies.
+        Welcome to my developer space where passion meets purpose.
+      </p>
+    </div>
+  </header>
+
+  <nav class="main-nav" data-aos="fade-down">
+    <ul class="nav-links">
+      <li data-aos="fade-down" data-aos-delay="100"><a href="../index.html">Home</a></li>
+      <li data-aos="fade-down" data-aos-delay="200"><a href="projects.html">Projects</a></li>
+      <li data-aos="fade-down" data-aos-delay="300"><a href="technologies.html">Technologies</a></li>
+      <li data-aos="fade-down" data-aos-delay="400"><a href="resume.html">Resume</a></li>
+      <li data-aos="fade-down" data-aos-delay="500"><a href="about.html">About</a></li>
+      <li data-aos="fade-down" data-aos-delay="600"><a href="blog.html">Blog</a></li>
+      <li data-aos="fade-down" data-aos-delay="700"><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="content-container">
+    <section class="technologies" data-aos="fade-up">
+      <h2>🛠️ Technologies I Work With</h2>
+      <p>Here’s a toolbox of my daily drivers — the frameworks, languages, and tools that power my ideas:</p>
+      <div class="tags">
+        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>TypeScript</span>
+        <span>Flutter</span><span>React</span><span>Node.js</span><span>Spring Boot</span>
+        <span>MongoDB</span><span>PostgreSQL</span><span>Firebase</span><span>GCP</span><span>Docker</span>
+      </div>
+    </section>
+
+    <section class="projects" data-aos="fade-up">
+      <h2>🚀 Highlighted Projects</h2>
+      <div class="project-card">
+        <h3>Bingflix</h3>
+        <p class="tech">Tech Used: Node.js, Flask, GCP, MongoDB, Vercel</p>
+        <p>
+          A movie recommendation system that integrates an ML-powered engine on Google Cloud. Engineered for fast, personalized results with asynchronous communication, GCP containerization, and secure JWT-based login.
+        </p>
+      </div>
+      <div class="project-card">
+        <h3>Full-Stack Task Manager</h3>
+        <p class="tech">Tech Used: Flutter, Dart Frog, Firebase, Redis, PostgreSQL</p>
+        <p>
+          A collaborative task management solution built with Dart-based backend and powerful state management. Boosted performance with Redis caching, containerized DBs, and JWT security.
+        </p>
+      </div>
+      <div class="project-card">
+        <h3>Fitness Tracker</h3>
+        <p class="tech">Tech Used: Angular, Spring Boot, MySQL, Chart.js</p>
+        <p>
+          Interactive fitness dashboard for tracking activity, goals, and health stats. Designed for intuitive user flow and highly praised for its clean UI and performance.
+        </p>
+      </div>
+    </section>
+
+    <section class="certs" data-aos="fade-up">
+      <h2>🏅 Certifications & Recognitions</h2>
+      <ul>
+        <li><strong>Smart India Hackathon 2024</strong> – Team Vehicomm, Public Transport Safety Innovation</li>
+        <li><strong>Infosys Springboard</strong> – Artificial Intelligence & Deep Learning Certification</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    AOS.init();
+    const names = ["Manoj", "a Developer", "a Designer", "a Builder", "a Visionary", "a Coder", "a Dreamer"];
+    let index = 0;
+    const span = document.querySelector(".typed-name");
+
+    function typeEffect(text, i = 0) {
+      if (i === 0) span.textContent = "";
+      if (i < text.length) {
+        span.textContent += text.charAt(i);
+        setTimeout(() => typeEffect(text, i + 1), 100);
+      } else {
+        setTimeout(() => eraseEffect(text), 1500);
+      }
+    }
+
+    function eraseEffect(text, i = text.length) {
+      if (i > 0) {
+        span.textContent = text.slice(0, i - 1);
+        setTimeout(() => eraseEffect(text, i - 1), 50);
+      } else {
+        index = (index + 1) % names.length;
+        setTimeout(() => typeEffect(names[index]), 500);
+      }
+    }
+
+    typeEffect(names[index]);
+  </script>
+</body>
+</html>
