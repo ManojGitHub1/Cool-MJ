@@ -1,4 +1,4 @@
-# Hello World, I'm Manoj ![hand pointing](https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif)
+# Hello World, I'm Manoj ![hand pointing](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnpsNTJsbHRld2ZrNXZqams0ZmIyMnd5eDdnZmFkNjM2c3Y0NnV0NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ep3AG0BJkAZGr4BSAq/giphy.gif)
 
 ![Banner](/images/Sky.png)
 
@@ -24,7 +24,7 @@ const manoj = {
     cloud: ["AWS", "Docker", "GCP", "Kubernetes"]
   },
   currentFocus: "Building scalable applications with clean architecture",
-  funFact: "I sometimes explain my bugs to an inanimate object... and it fixes itself. Rubber Duck Debugging is real magic. (yes, I talk to a rubber duck) 🐤✨"
+  funFact: "I sometimes explain my bugs to an inanimate object... and it fixes itself. (yes, I talk to a rubber duck) 🐤✨"
 };
 ```
 
