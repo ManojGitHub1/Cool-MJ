@@ -1,4 +1,4 @@
-# Hello World, I'm Manoj ![hand waving](https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif)
+# Hello World, I'm Manoj 👋
 
 ![Banner](/images/Sky.png)
 

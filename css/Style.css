@@ -26,7 +26,7 @@ p {
     line-height: 2;
 }
 hr {
-    border: dotted #eaf6f6 6px;
+    border: dotted #afebeb 6px;
     border-bottom: none;
     width: 5%;
     margin: 70px auto; 
@@ -90,7 +90,6 @@ a:hover {
     text-align: left;
 }
 
-
 .intro {
     width: 30%;
     margin: auto;
@@ -114,9 +113,9 @@ a:hover {
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
-  }
+}
   
-  .btn:hover {
+.btn:hover {
     background: #30e3cb;
     background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
     background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
@@ -124,9 +123,41 @@ a:hover {
     background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
     background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
     text-decoration: none;
-  }
+}
 .copyright {
     color: #eaf6f6;
     padding: 20px 0;
 }
- 
+
+/* New styles for added sections */
+.tech-stack {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tech-icon {
+    background-color: #E4F9F5;
+    color: #11999e;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.projects {
+    width: 70%;
+    margin: 50px auto;
+}
+
+.project-item {
+    margin: 30px auto;
+    width: 80%;
+}
