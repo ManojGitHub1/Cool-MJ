@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Zone | Manoj</title>
   <link rel="stylesheet" href="../css/developer.css">
-  <script src="../js/script.js" defer></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <div class="toggle-switch">☾ Dark Mode</div>
+
+  <div id="header-placeholder"></div>
 
   <header class="dev-header">
     <div class="overlay">
@@ -22,18 +22,6 @@
       </p>
     </div>
   </header>
-
-  <nav class="main-nav" data-aos="fade-down">
-    <ul class="nav-links">
-      <li data-aos="fade-down" data-aos-delay="100"><a href="../index.html">Home</a></li>
-      <li data-aos="fade-down" data-aos-delay="200"><a href="projects.html">Projects</a></li>
-      <li data-aos="fade-down" data-aos-delay="300"><a href="technologies.html">Technologies</a></li>
-      <li data-aos="fade-down" data-aos-delay="400"><a href="resume.html">Resume</a></li>
-      <li data-aos="fade-down" data-aos-delay="500"><a href="about.html">About</a></li>
-      <li data-aos="fade-down" data-aos-delay="600"><a href="blog.html">Blog</a></li>
-      <li data-aos="fade-down" data-aos-delay="700"><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
 
   <main class="content-container">
     <section class="technologies" data-aos="fade-up">
@@ -59,7 +47,7 @@
         <h3>Full-Stack Task Manager</h3>
         <p class="tech">Tech Used: Flutter, Dart Frog, Firebase, Redis, PostgreSQL</p>
         <p>
-          A collaborative task management solution built with Dart-based backend and powerful state management. Boosted performance with Redis caching, containerized DBs, and JWT security.
+          A collaborative task management solution built with a Dart-based backend and powerful state management. Boosted performance with Redis caching, containerized DBs, and JWT security.
         </p>
       </div>
       <div class="project-card">
@@ -80,6 +68,10 @@
     </section>
   </main>
 
+  <div id="footer-placeholder"></div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/script.js"></script>
   <script>
     AOS.init();
     const names = ["Manoj", "a Developer", "a Designer", "a Builder", "a Visionary", "a Coder", "a Dreamer"];
@@ -106,7 +98,11 @@
       }
     }
 
-    typeEffect(names[index]);
+    document.addEventListener("DOMContentLoaded", () => {
+        if(span) {
+            typeEffect(names[index]);
+        }
+    });
   </script>
 </body>
 </html>

@@ -1,221 +1,136 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    background-color: #e4f9f5;
-    color: #40514e;
+    background-color: #f4f7f6;
+    color: #333;
     transition: all 0.4s ease;
-  }
-  
-  .dev-header {
+}
+
+.dev-header {
     position: relative;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/mountain.png') no-repeat center/cover;
-    padding: 120px 30px 100px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/mountain.png') no-repeat center center/cover;
+    padding: 100px 20px;
     text-align: center;
     color: #fff;
-  }
-  .dev-header h1 {
-    font-size: 48px;
+}
+
+.dev-header h1 {
+    font-size: 3rem;
     margin-bottom: 10px;
     font-family: 'Sacramento', cursive;
-  }
-  .dev-header span {
+}
+
+.dev-header span {
     color: #30e3cb;
-  }
-  .dev-header .typing {
-    font-size: 22px;
+}
+
+.dev-header .typing {
+    font-size: 1.5rem;
     color: #eaf6f6;
-    animation: fadeIn 2s ease-in-out;
-  }
-  .header-tagline {
-    font-size: 18px;
-    max-width: 800px;
+}
+
+.header-tagline {
+    font-size: 1.1rem;
+    max-width: 700px;
     margin: 20px auto 0;
     line-height: 1.6;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  main.content-container {
-    width: 85%;
-    margin: 50px auto;
+}
+
+main.content-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-  }
-  
-  section {
-    background-color: white;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    transition: background-color 0.4s ease, color 0.4s ease;
-  }
-  
-  section h2 {
+    gap: 30px;
+}
+
+section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+section h2 {
     color: #11999e;
     margin-bottom: 15px;
-  }
-  section p, .project-card p {
-    line-height: 1.7;
-    font-size: 16px;
-  }
-  
-  .tags {
+}
+
+.tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     margin-top: 15px;
-  }
-  .tags span {
+}
+
+.tags span {
     background-color: #e4f9f5;
-    padding: 10px 18px;
+    padding: 8px 15px;
     border-radius: 20px;
     color: #11999e;
     font-weight: 600;
-  }
-  
-  .project-card {
-    background-color: #f0fafa;
+}
+
+.project-card {
+    background-color: #f9f9f9;
     margin-top: 20px;
-    border-left: 6px solid #11999e;
+    border-left: 5px solid #11999e;
     padding: 20px;
-    border-radius: 8px;
-  }
-  .project-card h3 {
+    border-radius: 5px;
+}
+
+.project-card h3 {
     margin-top: 0;
     color: #0f8489;
-  }
-  .project-card .tech {
+}
+
+.project-card .tech {
     font-weight: bold;
-    font-size: 14px;
-    color: #666;
+    font-size: 0.9rem;
+    color: #555;
     margin-bottom: 10px;
-  }
-  
-  .certs ul {
+}
+
+.certs ul {
     padding-left: 20px;
-  }
-  .certs li {
-    margin-bottom: 15px;
-  }
-  
-  /* Toggle */
-  .toggle-switch {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #66bfbf;
-    padding: 10px 18px;
-    border-radius: 30px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    cursor: pointer;
-    z-index: 9999;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-  .toggle-switch:hover {
-    background: #30e3cb;
-  }
-  .dark-mode .toggle-switch {
-    background: #66bfbf;
-    color: #eaf6f6;
-    box-shadow: 0 4px 8px rgba(255,255,255,0.3);
-    border: 1px solid #999;
-  }
+    list-style-type: '🏅';
+    padding-inline-start: 1.2rem;
+}
 
-  
-  /* Dark mode */
-  .dark-mode {
+.certs li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/* Dark Mode */
+body.dark-mode {
     background-color: #1e1e1e;
-    color: #eaf6f6;
-  }
-  .dark-mode .dev-header {
-    background: linear-gradient(rgba(20, 20, 20, 0.9), rgba(20, 20, 20, 0.9)), url('../images/mountain.png') no-repeat center/cover;
-    color: #eaf6f6;
-  }
-  .dark-mode section {
+    color: #e0e0e0;
+}
+.dark-mode .dev-header {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/mountain.png') no-repeat center center/cover;
+}
+.dark-mode section {
     background-color: #2d2d2d;
-    color: #eaf6f6;
-  }
-  .dark-mode .tags span {
-    background-color: #303030;
-    color: #66bfbf;
-  }
-  .dark-mode .project-card {
-    background-color: #292929;
+}
+.dark-mode .tags span {
+    background-color: #3e3e3e;
+    color: #a7d7d7;
+}
+.dark-mode .project-card {
+    background-color: #333333;
     border-left-color: #30e3cb;
-  }
+}
+.dark-mode .project-card h3, .dark-mode section h2 {
+    color: #a7d7d7;
+}
 
-/* Navigation */
-.main-nav {
-    background-color: #ffffff;
-    padding: 25px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-  }
-  .nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .nav-links li {
-    transform: translateY(-10px);
-    opacity: 0;
-    animation: fadeSlide 0.5s ease forwards;
-  }
-  
-  .nav-links li:nth-child(1) { animation-delay: 0.2s; }
-  .nav-links li:nth-child(2) { animation-delay: 0.4s; }
-  .nav-links li:nth-child(3) { animation-delay: 0.6s; }
-  .nav-links li:nth-child(4) { animation-delay: 0.8s; }
-  .nav-links li:nth-child(5) { animation-delay: 1.0s; }
-  .nav-links li:nth-child(6) { animation-delay: 1.2s; }
-  .nav-links li:nth-child(7) { animation-delay: 1.4s; }
-  
-  @keyframes fadeSlide {
-    to {
-      transform: translateY(0);
-      opacity: 1;
+/* Responsive */
+@media (max-width: 768px) {
+    .dev-header h1 {
+        font-size: 2.5rem;
     }
-  }
-  
-  .main-nav a {
-    color: #11999e;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  .main-nav a:hover {
-    background: #e4f9f5;
-    color: #30e3cb;
-  }
-  
-  /* Dark mode nav */
-  .dark-mode .main-nav {
-    background-color: #1e1e1e;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  }
-  .dark-mode .main-nav a {
-    color: #eaf6f6;
-  }
-  .dark-mode .main-nav a:hover {
-    background: #303030;
-    color: #66bfbf;
-  }
+    .dev-header .typing {
+        font-size: 1.2rem;
+    }
+}

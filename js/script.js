@@ -1,12 +1,11 @@
-// Dark Mode Toggle
-const toggle = document.createElement("div");
-toggle.className = "toggle-switch";
-toggle.innerText = "☾ Dark Mode";
-document.body.appendChild(toggle);
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Initialize Animate On Scroll (AOS) Library
+    AOS.init({
+        duration: 800,          // Animation duration in milliseconds
+        easing: 'ease-in-out',  // Type of easing
+        once: true,             // Whether animation should happen only once
+        mirror: false           // Whether elements should animate out while scrolling past
+    });
 
-let dark = false;
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  dark = !dark;
-  toggle.innerText = dark ? "☀ Light Mode" : "☾ Dark Mode";
-}); 
+});

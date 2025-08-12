@@ -1,91 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manoj made this</title>
+  <title>Manoj | Web Developer & Designer</title>
 
-  <link rel="stylesheet" href="css/Style.css" />
+  <!-- Link to the AOS Animation Library CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&family=Montserrat&family=Sacramento&display=swap"
-    rel="stylesheet" />
+  <!-- Loading the Inter font for a professional look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-  <div class="top-container">
-    <img class="top-cloud" src="images/cloud.png" alt="cloud" />
-    <h1>I'm Manoj.</h1>
-    <h2>a <span class="pro">pro</span>grammer & designer.</h2>
-    <img class="bottom-cloud" src="images/cloud.png" alt="cloud" />
-    <img src="images/mountain.png" alt="mountain" />
-  </div>
-  <div class="middle-container">
-    <div class="profile">
-      <img class="pimg" src="images/Shri_Krishna.jpeg" alt="krishna" />
-      <h3>Hello.</h3>
-      <p class="intro">
-        I am a passionate Web Developer with an eye for detail. I enjoy
-        crafting clean, responsive websites that deliver exceptional user
-        experiences. When not coding, you'll find me enjoying a cup of black
-        coffee and immersing myself in books.
-      </p>
-    </div>
-    <hr />
-    <div class="skills">
-      <h3>My Skills.</h3>
-      <div class="skill-row">
-        <img class="simg" src="https://cdn-icons-png.flaticon.com/512/4506/4506154.png" alt="development icon" />
-        <h2>Design & Development</h2>
-        <p class="code-skill-description">
-          My journey in web development began when I was 19 years old. Since
-          then, I've been continuously improving my skills in HTML, CSS, and
-          JavaScript. I focus on creating intuitive, responsive designs that
-          provide seamless user experiences across all devices.
-        </p>
-      </div>
-      <br />
-      <div class="skill-row">
-        <img class="srimg" src="https://cdn-icons-png.flaticon.com/512/826/826070.png" alt="travel icon" />
-        <h2>Travelling</h2>
-        <p class="travel-skill-description">
-          I love exploring different parts of the world and immersing myself
-          in diverse cultures. Traveling inspires my creativity and brings
-          fresh perspectives to my design approach.
-        </p>
-      </div>
-    </div>
-    <br />
-    <hr />
-    <div class="explore-developer">
-      <h3>Wanna see something cool? 👨‍💻</h3>
-      <p class="funny-line">I put the 'fun' in 'functional web design' 😎</p>
-      <a class="btn" href="pages/developer.html">Checkout My Developer Zone 🚀</a>
-    </div>
-    <hr />
-    <div class="contact-me">
-      <h3>Get In Touch</h3>
-      <h2>Share my passion for web design and travel?</h2>
-      <p class="contact-me">
-        If you're as enthusiastic about web development or traveling as I am,
-        let's connect! We can discuss exciting projects or even plan
-        adventures together.
-      </p>
-      <a class="btn" href="mailto:manojjivanagi@email.com">CONTACT ME</a>
-    </div>
-  </div>
 
-  <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/manoj-jivanagi-073179267/" target="_blank">LinkedIn</a>
-    <a class="footer-link" href="https://twitter.com/Manoj_Jivanagi" target="_blank">Twitter</a>
-    <a class="footer-link" href="https://www.instagram.com/manojjivanagi_123/" target="_blank">Instagram</a>
-    <p class="copyright">© 2025 Manoj Jivanagi. All rights reserved.</p>
-  </div>
+  <main>
+    <div class="top-container">
+      <img class="top-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-down" data-aos-delay="200" />
+      <h1 data-aos="zoom-in">I'm Manoj.</h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="100">a <span class="pro">pro</span>grammer & developer.</p>
+      <img class="bottom-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-up" data-aos-delay="300" />
+      <img class="mountain" src="images/mountain.png" alt="mountain" />
+    </div>
 
+    <div class="middle-container">
+      <div class="profile" data-aos="fade-up">
+          <img class="pimg" src="images/Shri_Krishna.jpeg" alt="krishna-profile-img" />
+          <h3>Hello there.</h3>
+          <p class="intro">I'm a software developer who builds beautiful, effective things for the web. I believe the best work comes from the intersection of sharp design, robust code, and a healthy dose of black coffee.</p>
+      </div>
+      <hr data-aos="fade-up" />
+      <div class="skills" id="skills" data-aos="fade-up">
+          <h3>A Few of My Passions</h3>
+          <div class="skill-row" data-aos="fade-right">
+              <img class="skill-icon" src="https://cdn-icons-png.flaticon.com/512/4506/4506154.png" alt="development icon" />
+              <div class="skill-description"><h4>Design & Development</h4><p>For me, code is a creative medium. I love the challenge of turning complex problems into intuitive, pixel-perfect designs. My focus is on writing clean, efficient code that results in engaging user experiences.</p></div>
+          </div>
+          <div class="skill-row skill-row-reverse" data-aos="fade-left">
+              <img class="skill-icon" src="https://cdn-icons-png.flaticon.com/512/826/826070.png" alt="travel icon" />
+              <div class="skill-description"><h4>Travelling</h4><p>Exploring new places fuels my creativity. It's my reset button and my source of inspiration, reminding me that there's always a different perspective and a new way to approach a problem.</p></div>
+          </div>
+          <div class="skill-row" data-aos="fade-right">
+              <img class="skill-icon" src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png" alt="music icon" />
+              <div class="skill-description"><h4>Music</h4><p>Whether I'm listening to a favorite album or trying to learn a new tune on the guitar, music is my ultimate focus tool. It's the background score to my best coding sessions and biggest ideas.</p></div>
+          </div>
+          <div class="skill-row skill-row-reverse" data-aos="fade-left">
+              <img class="skill-icon" src="https://cdn-icons-png.flaticon.com/512/3048/3048221.png" alt="sports icon" />
+              <div class="skill-description"><h4>Sports</h4><p>I'm a firm believer that a healthy body leads to a healthy mind. Getting away from the keyboard for a game of cricket or a long run is essential for my problem-solving and overall well-being.</p></div>
+          </div>
+      </div>
+      <hr data-aos="fade-up" />
+      <div class="explore-developer" id="developer-zone" data-aos="fade-up">
+          <h3>My Developer Zone</h3>
+          <p class="funny-line">This is where the magic happens. And by magic, I mean carefully written, well-documented code. Mostly.</p>
+          <a class="btn" href="pages/developer.html">Step Into My Office 🚀</a>
+      </div>
+      <hr data-aos="fade-up" />
+      <div class="contact-me" id="contact" data-aos="zoom-in-up">
+          <h3>Let's Collaborate.</h3>
+          <h4>Have a project, an idea, or just want to talk tech?</h4>
+          <p>My inbox is always open. Whether you're a potential client or a fellow developer, I'd love to connect and see how we can build something amazing together.</p>
+          <a class="btn" href="mailto:manojjivanagi@email.com">SAY HELLO</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer is now directly in the HTML -->
+  <footer class="bottom-container">
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/manoj-jivanagi-073179267/" target="_blank" title="LinkedIn">LinkedIn</a>
+        <a href="https://twitter.com/Manoj_Jivanagi" target="_blank" title="Twitter">Twitter</a>
+        <a href="https://www.instagram.com/manojjivanagi_123/" target="_blank" title="Instagram">Instagram</a>
+    </div>
+    <p class="copyright">© 2025 Manoj Jivanagi. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Link to the AOS Animation Library JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/script.js"></script>
 </body>
-
 </html>
