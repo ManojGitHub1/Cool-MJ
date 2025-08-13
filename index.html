@@ -5,28 +5,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manoj | Web Developer & Designer</title>
-
-  <!-- Link to the AOS Animation Library CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Loading the Inter font for a professional look -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet" />
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
 <body>
 
   <main>
     <div class="top-container">
-      <img class="top-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-down" data-aos-delay="200" />
-      <h1 data-aos="zoom-in">I'm Manoj.</h1>
-      <p class="subtitle" data-aos="fade-up" data-aos-delay="100">a <span class="pro">pro</span>grammer & developer.</p>
-      <img class="bottom-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-up" data-aos-delay="300" />
+      <img class="top-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-left" data-aos-delay="600" />
+      <img class="top-cloud-2" src="images/cloud.png" alt="cloud" data-aos="fade-left" data-aos-delay="800" />
+
+      <!-- UPDATED: Text is now wrapped in a container for better positioning -->
+      <div class="title-text">
+        <h1 data-aos="zoom-in">I'm Manoj.</h1>
+        <p class="subtitle" data-aos="fade-up" data-aos-delay="200">A <span class="pro">Pro</span>grammer & Developer.</p>
+      </div>
+
+      <img class="bottom-cloud" src="images/cloud.png" alt="cloud" data-aos="fade-right" data-aos-delay="700" />
+      <img class="bottom-cloud-2" src="images/cloud.png" alt="cloud" data-aos="fade-right" data-aos-delay="900" />
+
       <img class="mountain" src="images/mountain.png" alt="mountain" />
     </div>
 
+    <!-- The rest of your index.html remains exactly the same -->
     <div class="middle-container">
       <div class="profile" data-aos="fade-up">
           <img class="pimg" src="images/Shri_Krishna.jpeg" alt="krishna-profile-img" />
@@ -69,7 +73,6 @@
     </div>
   </main>
 
-  <!-- Footer is now directly in the HTML -->
   <footer class="bottom-container">
     <div class="footer-links">
         <a href="https://www.linkedin.com/in/manoj-jivanagi-073179267/" target="_blank" title="LinkedIn">LinkedIn</a>
@@ -79,7 +82,6 @@
     <p class="copyright">© 2025 Manoj Jivanagi. All Rights Reserved.</p>
   </footer>
 
-  <!-- Link to the AOS Animation Library JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="js/script.js"></script>
 </body>

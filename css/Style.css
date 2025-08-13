@@ -2,68 +2,149 @@
 body {
   margin: 0;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Merienda", cursive;
   font-size: 17px;
+  font-weight: 400;
   color: #3d4a49;
   background-color: #fbfdfd;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 { margin: 50px auto 0 auto; font-family: 'Sacramento', cursive; font-size: 5.625rem; color: #66bfbf; }
-.subtitle { font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #66bfbf; font-weight: normal; .pro {text-decoration: underline;} }
-h3 { font-weight: 700; font-size: 2rem; color: #11999e; }
-h4 { font-weight: 600; font-size: 1.35rem; color: #11999e; margin: 0; }
-p { line-height: 1.8; }
-hr { border: dotted #ddeaea 6px; border-bottom: none; width: 4%; margin: 80px auto; }
-a { color: #11999e; text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: #30e3cb; }
-
-/* === FOOTER === */
-.bottom-container {
-  background-color: #66bfbf;
-  padding: 60px 20px;
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
-}
-.footer-links {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.footer-links a {
-  color: #eaf6f6;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 10px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.footer-links a:hover {
-  color: #ffffff;
-  transform: translateY(-3px);
-}
-.copyright {
-  font-size: 0.9rem;
-  color: #d0f0f0;
-  padding-top: 20px;
-}
-
-/* === PAGE SECTIONS & ANIMATIONS === */
+/*
+   ==============================================
+   === IMMERSIVE HERO SECTION (COMPOSITION FIX) ===
+   ==============================================
+*/
 .top-container {
   background-color: #e4f9f5;
+  height: 100vh;
+  min-height: 600px;
   position: relative;
-  padding: 100px 20px 0;
   overflow: hidden;
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
 }
-.top-cloud { position: absolute; right: 15%; top: 50px; width: 150px; }
-.bottom-cloud { position: absolute; left: 15%; bottom: 25%; width: 150px; }
-.mountain { width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto; }
 
-.middle-container { padding: 50px 20px; }
-.profile, .skills, .contact-me { max-width: 700px; margin: 50px auto; }
-.pimg { width: 150px; height: 150px; border-radius: 8%; object-fit: cover; }
-.intro { max-width: 600px; margin: 20px auto; }
+/* This container now holds the text and ensures it's centered above the mountain */
+.title-text {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 25vh; /* Pushes the text up from the absolute center */
+}
 
+h1 {
+  margin: 0;
+  font-family: "Sacramento", cursive;
+  font-size: clamp(4.5rem, 12vw, 8.625rem);
+  color: #66bfbf;
+}
+.subtitle {
+  font-family: "Merienda", cursive;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #66bfbf;
+  font-weight: 400;
+  margin-top: -10px;
+}
+.subtitle .pro {
+  background-color: #4c29bd;
+  color: #ffffff;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+/* UPDATED: Strategic cloud positioning to frame the text */
+.top-cloud {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: clamp(100px, 15vw, 180px);
+  z-index: 1; /* Sits behind text container */
+}
+.top-cloud-2 {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: clamp(80px, 10vw, 130px);
+  z-index: 3; /* Sits in front of text container */
+  opacity: 0.9;
+}
+.bottom-cloud {
+  position: absolute;
+  bottom: 28%; /* Adjusted to be clear of the mountain */
+  left: 10%;
+  width: clamp(100px, 15vw, 180px);
+  z-index: 1;
+}
+.bottom-cloud-2 {
+  position: absolute;
+  bottom: 35%; /* Adjusted to be clear of the mountain */
+  right: 18%;
+  width: clamp(90px, 12vw, 160px);
+  z-index: 3;
+}
+
+/* UPDATED: Mountain size and position */
+.mountain {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 950px; /* Refined max-width */
+  height: auto;
+  z-index: 0;
+}
+
+/* === MIDDLE & FOOTER SECTIONS (UNCHANGED CORE STYLES) === */
+.middle-container {
+  padding: 50px 20px;
+}
+hr {
+  border: dotted #ddeaea 6px;
+  border-bottom: none;
+  width: 4%;
+  margin: 80px auto;
+}
+a {
+  color: #11999e;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #30e3cb;
+}
+h3 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #11999e;
+}
+h4 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #11999e;
+  margin: 0;
+}
+p {
+  line-height: 1.8;
+}
+.profile,
+.skills,
+.contact-me {
+  max-width: 700px;
+  margin: 50px auto;
+}
+.pimg {
+  width: 200px;
+  height: 250px;
+  border-radius: 8%;
+  object-fit: cover;
+}
+.intro {
+  max-width: 600px;
+  margin: 20px auto;
+}
 .skill-row {
   display: flex;
   align-items: center;
@@ -72,21 +153,25 @@ a:hover { color: #30e3cb; }
   text-align: left;
   padding: 25px;
   border-radius: 15px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease,
+    background-color 0.4s ease;
 }
 .skill-row:hover {
   transform: translateY(-10px);
-  background-color: #fff;
-  box-shadow: 0 15px 30px rgba(102, 191, 191, 0.15);
+  background-color: #ffffff;
+  box-shadow: 0 15px 30px rgba(0, 255, 255, 0.457);
 }
-.skill-icon { width: 80px; height: 80px; flex-shrink: 0; }
+.skill-icon {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
 .skill-row-reverse {
   flex-direction: row-reverse;
 }
 .skill-row-reverse .skill-description {
   text-align: right;
 }
-
 .explore-developer {
   margin: 80px auto;
   max-width: 600px;
@@ -99,24 +184,23 @@ a:hover { color: #30e3cb; }
 .explore-developer:hover {
   transform: translateY(-5px);
   border-color: #b9e7e5;
-  box-shadow: 0 8px 15px rgba(102, 191, 191, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 255, 255, 0.457);
 }
 .funny-line {
   color: #11999e;
   font-size: 18px;
   margin-bottom: 20px;
 }
-
 .btn {
   display: inline-block;
   margin-top: 20px;
   background-image: linear-gradient(45deg, #1dd1a1, #11999e);
   border: none;
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Merienda", cursive;
   color: #ffffff;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 16px 32px;
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -125,14 +209,98 @@ a:hover { color: #30e3cb; }
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 15px rgba(29, 209, 161, 0.2);
 }
+.bottom-container {
+  background-color: #66bfbf;
+  padding: 60px 20px;
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+}
+.footer-links {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.footer-links a {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.footer-links a:hover {
+  color: #4c29bd;
+  transform: translateY(-3px);
+}
+.copyright {
+  font-size: 0.9rem;
+  color: #d0f0f0;
+  padding-top: 20px;
+}
 
-/* === RESPONSIVE === */
+/* === COMPREHENSIVE RESPONSIVE DESIGN === */
+@media (min-width: 1800px) {
+  .profile,
+  .skills,
+  .contact-me,
+  .explore-developer {
+    max-width: 800px;
+  }
+}
+@media (max-width: 1200px) {
+  .title-text {
+    margin-bottom: 15vh;
+  }
+}
+@media (max-width: 1023px) {
+  .profile,
+  .skills,
+  .contact-me,
+  .explore-developer {
+    max-width: 90%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .skill-row {
+    gap: 25px;
+    margin: 80px auto;
+  }
+}
 @media (max-width: 767px) {
-  .skill-row, .skill-row-reverse {
+  body {
+    font-size: 16px;
+  }
+  .title-text {
+    margin-bottom: 20vh;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+  h4 {
+    font-size: 1.3rem;
+  }
+  .pimg {
+    width: 150px;
+    height: 180px;
+  }
+  .skill-row,
+  .skill-row-reverse {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
-  .skill-row .skill-description, .skill-row-reverse .skill-description {
+  .skill-row .skill-description,
+  .skill-row-reverse .skill-description {
     text-align: center;
+  }
+  .skill-icon {
+    margin: 0 auto 10px auto;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn {
+    padding: 14px 28px;
+    font-size: 16px;
   }
 }
