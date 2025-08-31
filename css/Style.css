@@ -50,7 +50,7 @@ h1 {
 .subtitle .pro {
   background-color: #4c29bd;
   color: #ffffff;
-  padding: 0 8px;
+  padding: 0 2px;
   border-radius: 4px;
 }
 
@@ -100,6 +100,7 @@ h1 {
 /* === MIDDLE & FOOTER SECTIONS (UNCHANGED CORE STYLES) === */
 .middle-container {
   padding: 50px 20px;
+  /* background-color: black; */
 }
 hr {
   border: dotted #ddeaea 6px;
@@ -212,7 +213,7 @@ p {
 .bottom-container {
   background-color: #66bfbf;
   padding: 60px 20px;
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+  /* clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); */
 }
 .footer-links {
   margin-bottom: 20px;

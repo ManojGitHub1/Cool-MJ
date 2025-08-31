@@ -6,7 +6,6 @@
   <title>Developer Zone | Manoj</title>
   
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- IMPORTANT: We now link to the new developer.css file -->
   <link rel="stylesheet" href="../css/developer.css">
   
   <link rel="icon" href="../images/favicon.ico" />
@@ -16,75 +15,76 @@
 </head>
 <body>
 
+  <div class="aurora-background"></div>
+
   <div class="dev-container">
     <header class="dev-header" data-aos="fade-down">
       <h1>Developer Zone</h1>
-      <p class="header-subtitle">A closer look at my technical skills, projects, and journey.</p>
+      <p class="header-subtitle">Where creativity meets code. A showcase of my technical skills and creative endeavors.</p>
     </header>
+
+    <!-- NEW: Integrated Navigation Menu -->
+    <nav class="dev-nav" data-aos="fade-up" data-aos-delay="100">
+      <a href="../index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+    </nav>
 
     <main class="dev-main">
       <section class="tech-stack" data-aos="fade-up" data-aos-delay="200">
-        <h2>My Technology Stack</h2>
+        <h2>My Digital Toolkit</h2>
         <div class="tech-grid">
-          <div class="tech-item"><span>HTML5</span></div>
-          <div class="tech-item"><span>CSS3</span></div>
-          <div class="tech-item"><span>JavaScript</span></div>
-          <div class="tech-item"><span>TypeScript</span></div>
-          <div class="tech-item"><span>Flutter</span></div>
-          <div class="tech-item"><span>React</span></div>
-          <div class="tech-item"><span>Node.js</span></div>
-          <div class="tech-item"><span>Spring Boot</span></div>
-          <div class="tech-item"><span>MongoDB</span></div>
-          <div class="tech-item"><span>PostgreSQL</span></div>
-          <div class="tech-item"><span>Firebase</span></div>
-          <div class="tech-item"><span>GCP</span></div>
-          <div class="tech-item"><span>Docker</span></div>
+          <div class="tech-item">HTML5</div><div class="tech-item">CSS3</div><div class="tech-item">JavaScript</div>
+          <div class="tech-item">TypeScript</div><div class="tech-item">Flutter</div><div class="tech-item">React</div>
+          <div class="tech-item">Node.js</div><div class="tech-item">Spring Boot</div><div class="tech-item">MongoDB</div>
+          <div class="tech-item">PostgreSQL</div><div class="tech-item">Firebase</div><div class="tech-item">GCP</div>
+          <div class="tech-item">Docker</div>
         </div>
       </section>
 
       <section class="projects" data-aos="fade-up" data-aos-delay="300">
-        <h2>Highlighted Projects</h2>
+        <h2>Signature Projects</h2>
         <div class="projects-grid">
           
-          <div class="project-card">
-            <div class="card-content">
-              <h3>Bingflix</h3>
-              <p class="project-description">A movie recommendation system with an ML-powered engine on GCP, engineered for fast, personalized results with asynchronous communication and secure JWT-based login.</p>
-              <p class="tech-used"><strong>Tech:</strong> Node.js, Flask, GCP, MongoDB, Vercel</p>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-header"><h3>Bingflix</h3></div>
+            <div class="card-body">
+              <p>A movie recommendation system with an ML-powered engine on GCP, engineered for fast, personalized results and secure JWT-based login.</p>
             </div>
+            <div class="card-footer"><p>Node.js • Flask • GCP • MongoDB • Vercel</p></div>
           </div>
 
-          <div class="project-card">
-            <div class="card-content">
-              <h3>Full-Stack Task Manager</h3>
-              <p class="project-description">A collaborative task management solution built with a Dart-based backend. Boosted performance with Redis caching, containerized DBs, and JWT security.</p>
-              <p class="tech-used"><strong>Tech:</strong> Flutter, Dart Frog, Firebase, Redis, PostgreSQL</p>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="card-header"><h3>Full-Stack Task Manager</h3></div>
+            <div class="card-body">
+              <p>A collaborative task management solution with a Dart-based backend. Performance is boosted with Redis caching and containerized DBs.</p>
             </div>
+            <div class="card-footer"><p>Flutter • Dart Frog • Firebase • Redis • PostgreSQL</p></div>
           </div>
 
-          <div class="project-card">
-            <div class="card-content">
-              <h3>Fitness Tracker</h3>
-              <p class="project-description">An interactive fitness dashboard for tracking activity, goals, and health stats. Designed for an intuitive user flow and praised for its clean UI and performance.</p>
-              <p class="tech-used"><strong>Tech:</strong> Angular, Spring Boot, MySQL, Chart.js</p>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="card-header"><h3>Fitness Tracker</h3></div>
+            <div class="card-body">
+              <p>An interactive fitness dashboard for tracking activity, goals, and health stats, praised for its clean UI and intuitive user flow.</p>
             </div>
+            <div class="card-footer"><p>Angular • Spring Boot • MySQL • Chart.js</p></div>
           </div>
 
         </div>
       </section>
 
       <section class="certs" data-aos="fade-up" data-aos-delay="400">
-        <h2>Certifications & Recognitions</h2>
+        <h2>Recognitions</h2>
         <ul>
           <li><strong>Smart India Hackathon 2024</strong> – Team Vehicomm, Public Transport Safety Innovation</li>
           <li><strong>Infosys Springboard</strong> – Artificial Intelligence & Deep Learning Certification</li>
         </ul>
       </section>
-
     </main>
     
+    <!-- UPDATED: Footer is now cleaner -->
     <footer class="dev-footer" data-aos="fade-up">
-      <a class="btn-home" href="../index.html">Back to Home</a>
+      <p class="footer-text">Let's build something amazing together.</p>
     </footer>
   </div>
 

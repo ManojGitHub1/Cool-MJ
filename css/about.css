@@ -1,0 +1,130 @@
+/*
+   ==============================================
+   ===        "ABOUT ME" STYLESHEET           ===
+   ==============================================
+*/
+
+/* === FONT & GENERAL STYLING === */
+body {
+  margin: 0;
+  font-family: 'Merienda', cursive;
+  font-weight: 400;
+  background-color: #0a192f;
+  color: #a8b2d1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* === ANIMATED AURORA BACKGROUND === */
+.aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.1), transparent 40%), radial-gradient(circle at 80% 90%, rgba(76, 41, 189, 0.1), transparent 50%); animation: aurora-glow 15s ease-in-out infinite alternate; }
+@keyframes aurora-glow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* === MAIN CONTAINER & HEADER === */
+.about-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+.about-header { text-align: center; margin-bottom: 80px; }
+.about-header h1 { font-family: 'Sacramento', cursive; font-size: clamp(4rem, 10vw, 6rem); color: #64ffda; margin: 0; text-shadow: 0 0 15px rgba(100, 255, 218, 0.3); }
+.header-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: #8892b0; margin-top: 0; }
+
+/* === INTRO SECTION === */
+.intro-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.profile-photo {
+  flex: 0 0 250px; /* Fixed width for the photo container */
+}
+
+.profile-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 30px; /* Circular photo for a modern look */
+  border: 3px solid #64ffda;
+  box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+}
+
+.intro-text {
+  text-align: left;
+}
+
+.intro-text h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #ccd6f6;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* === PHILOSOPHY SECTION === */
+.philosophy-section h2 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #ccd6f6;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.philosophy-card {
+  background: #112240;
+  border: 1px solid #132f4c;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-10px);
+  border-color: #64ffda;
+}
+
+.philosophy-card h4 {
+  font-size: 1.3rem;
+  color: #64ffda;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.philosophy-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* === FOOTER & HOME BUTTON === */
+.about-footer { text-align: center; margin-top: 80px; }
+.btn-home { display: inline-block; background-color: transparent; border: 2px solid #64ffda; border-radius: 8px; font-family: "Merienda", cursive; color: #64ffda; font-size: 18px; font-weight: 700; padding: 14px 30px; text-decoration: none; transition: all 0.3s ease; }
+.btn-home:hover { background-color: #64ffda; color: #0a192f; box-shadow: 0 0 20px rgba(100, 255, 218, 0.2); }
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 767px) {
+  .about-container { padding: 40px 15px; }
+  
+  .intro-section {
+    flex-direction: column; /* Stack photo and text on mobile */
+    text-align: center;
+  }
+
+  .intro-text {
+    text-align: center;
+  }
+
+  .intro-text h2 {
+    font-size: 1.8rem;
+  }
+}

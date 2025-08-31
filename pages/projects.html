@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects | Manoj</title>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- This page will have its own dedicated stylesheet -->
+  <link rel="stylesheet" href="../css/projects.css">
+  
+  <link rel="icon" href="../images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Sacramento&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="aurora-background"></div>
+
+  <div class="projects-container">
+    <header class="projects-header" data-aos="fade-down">
+      <h1>My Work</h1>
+      <p class="header-subtitle">A collection of projects where I've turned ideas into reality.</p>
+    </header>
+
+    <main class="projects-showcase">
+
+      <!-- Project 1: Bingflix -->
+      <section class="project-entry" data-aos="fade-right">
+        <div class="project-image-column">
+          <img src="https://via.placeholder.com/800x600.png/0a192f/64ffda?text=Bingflix+Screenshot" alt="Bingflix Project Screenshot">
+        </div>
+        <div class="project-details-column">
+          <h3>Bingflix - Movie Recommendation System</h3>
+          <div class="project-description">
+            <p>An intelligent movie recommendation system that leverages machine learning to provide personalized suggestions based on user ratings and collaborative filtering techniques.</p>
+          </div>
+          <h4>Key Features:</h4>
+          <ul>
+            <li>ML model for content-based recommendations.</li>
+            <li>Clean, interactive web interface for user interaction.</li>
+            <li>Scalable architecture built for handling new data.</li>
+          </ul>
+          <p class="tech-stack">Python • Flask • Scikit-learn • Pandas • HTML/CSS</p>
+          <div class="project-links">
+            <a href="https://github.com/ManojGitHub1/Movie-Recommendation-Bingflix" class="btn-project" target="_blank">View Code</a>
+            <!-- Add a disabled button if no live link is available -->
+            <a href="#" class="btn-project disabled" target="_blank">Live Demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project 2: Fitness Tracker -->
+      <section class="project-entry layout-reversed" data-aos="fade-left">
+        <div class="project-image-column">
+          <img src="https://via.placeholder.com/800x600.png/0a192f/64ffda?text=Fitness+Tracker+Dashboard" alt="Fitness Tracker Project Screenshot">
+        </div>
+        <div class="project-details-column">
+          <h3>Full-Stack Fitness Tracker</h3>
+          <div class="project-description">
+            <p>A comprehensive fitness application designed to help users track workouts, monitor progress, and visualize their health data through an intuitive dashboard.</p>
+          </div>
+          <h4>Key Features:</h4>
+          <ul>
+            <li>Secure user authentication and data management.</li>
+            <li>Dynamic data visualization with Chart.js.</li>
+            <li>Full CRUD functionality for workout logging.</li>
+          </ul>
+          <p class="tech-stack">Angular • Spring Boot • MySQL • Chart.js</p>
+          <div class="project-links">
+            <a href="https://github.com/ManojGitHub1/FitnessTracker" class="btn-project" target="_blank">View Code</a>
+            <a href="#" class="btn-project disabled" target="_blank">Live Demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project 3: MLOps Project -->
+      <section class="project-entry" data-aos="fade-right">
+        <div class="project-image-column">
+          <img src="https://via.placeholder.com/800x600.png/0a192f/64ffda?text=MLOps+Pipeline" alt="MLOps Project Screenshot">
+        </div>
+        <div class="project-details-column">
+          <h3>Vehicle Insurance MLOps Project</h3>
+          <div class="project-description">
+            <p>An end-to-end Machine Learning Operations project that automates the entire ML lifecycle, from data ingestion and model training to deployment and monitoring for a vehicle insurance prediction model.</p>
+          </div>
+          <h4>Key Features:</h4>
+          <ul>
+            <li>CI/CD pipeline for automated model training and deployment.</li>
+            <li>Experiment tracking and model versioning.</li>
+            <li>Deployed as a scalable API for real-world use.</li>
+          </ul>
+          <p class="tech-stack">MLOps • CI/CD • Python • Scikit-learn • Docker</p>
+          <div class="project-links">
+            <a href="https://github.com/ManojGitHub1/Vehicle-Insurance-MLOPS-Project" class="btn-project" target="_blank">View Code</a>
+            <a href="#" class="btn-project disabled" target="_blank">Live Demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Add more projects following the same alternating pattern -->
+
+    </main>
+    
+    <footer class="projects-footer" data-aos="fade-up">
+      <a class="btn-home" href="../index.html">Return to the Clouds</a>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
+  </script>
+</body>
+</html>
