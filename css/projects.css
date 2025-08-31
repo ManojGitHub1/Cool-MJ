@@ -1,10 +1,10 @@
-/*
-   ==============================================
-   ===     "PROJECTS SHOWCASE" STYLESHEET     ===
-   ==============================================
-*/
+/* =================================================================
+   STYLESHEET FOR PROJECTS PAGE
+   Theme: "Digital Aurora"
+   ================================================================= */
 
-/* === FONT & GENERAL STYLING === */
+/* ===== Base & Typography ===== */
+
 body {
   margin: 0;
   font-family: 'Merienda', cursive;
@@ -16,31 +16,83 @@ body {
   overflow-x: hidden;
 }
 
-/* === ANIMATED AURORA BACKGROUND (Consistent with Developer Zone) === */
-.aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.1), transparent 40%), radial-gradient(circle at 80% 90%, rgba(76, 41, 189, 0.1), transparent 50%); animation: aurora-glow 15s ease-in-out infinite alternate; }
-@keyframes aurora-glow { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+/* ===== Animated Background ===== */
 
-/* === MAIN CONTAINER & HEADER === */
-.projects-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-.projects-header { text-align: center; margin-bottom: 80px; }
-.projects-header h1 { font-family: 'Sacramento', cursive; font-size: clamp(4rem, 10vw, 6rem); color: #64ffda; margin: 0; text-shadow: 0 0 15px rgba(100, 255, 218, 0.3); }
-.header-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: #8892b0; margin-top: 0; }
+.aurora-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.1), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(76, 41, 189, 0.1), transparent 50%);
+  animation: aurora-glow 15s ease-in-out infinite alternate;
+}
 
-/* === DETAILED PROJECT ENTRY === */
+@keyframes aurora-glow {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* ===== Layout & Header ===== */
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.projects-header h1 {
+  font-family: 'Neonderthaw', cursive;
+  font-weight: 400;
+  letter-spacing: 3px;
+  font-size: clamp(4.5rem, 12vw, 7rem);
+  line-height: 1.2;
+  color: #64ffda;
+  margin: 0;
+  text-shadow: 
+    0 0 5px  rgba(100, 255, 218, 0.8),
+    0 0 10px rgba(100, 255, 218, 0.6),
+    0 0 20px rgba(100, 255, 218, 0.4);
+}
+
+.header-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #8892b0;
+  margin-top: 10px;
+}
+
+/* ===== Project Showcase Section ===== */
+
+.projects-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
 .project-entry {
   display: flex;
   gap: 40px;
-  margin-bottom: 100px;
   align-items: center;
 }
-/* For alternating layout */
-.layout-reversed { flex-direction: row-reverse; }
 
-/* === PROJECT IMAGE COLUMN === */
+.layout-reversed {
+  flex-direction: row-reverse;
+}
+
+/* --- Project Image Column --- */
 .project-image-column {
-  flex: 1.2; /* Allows image to be slightly larger */
+  flex: 1.2;
   position: relative;
 }
+
 .project-image-column img {
   width: 100%;
   height: auto;
@@ -48,16 +100,18 @@ body {
   border: 1px solid #132f4c;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
 .project-image-column:hover img {
   transform: scale(1.03);
   box-shadow: 0 10px 30px rgba(2, 12, 27, 0.8);
 }
 
-/* === PROJECT DETAILS COLUMN === */
+/* --- Project Details Column --- */
 .project-details-column {
   flex: 1;
   text-align: left;
 }
+
 .project-details-column h3 {
   font-size: 2rem;
   font-weight: 700;
@@ -65,13 +119,16 @@ body {
   margin-top: 0;
   margin-bottom: 15px;
 }
+
 .project-description p {
   background-color: #112240;
   padding: 20px;
   border-radius: 8px;
   font-size: 1rem;
   line-height: 1.7;
+  margin: 0;
 }
+
 .project-details-column h4 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -79,25 +136,30 @@ body {
   margin-top: 25px;
   margin-bottom: 10px;
 }
+
 .project-details-column ul {
   list-style-type: '✓';
   padding-left: 20px;
 }
+
 .project-details-column li {
   padding-left: 10px;
   margin-bottom: 8px;
 }
+
 .tech-stack {
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
   color: #8892b0;
   margin-top: 25px;
 }
+
 .project-links {
   margin-top: 30px;
   display: flex;
   gap: 15px;
 }
+
 .btn-project {
   display: inline-block;
   background-color: transparent;
@@ -111,25 +173,52 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
 }
+
 .btn-project:hover {
   background-color: #64ffda;
   color: #0a192f;
   box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
 }
+
 .btn-project.disabled {
   border-color: #303C55;
   color: #8892b0;
   cursor: not-allowed;
   pointer-events: none;
 }
-.btn-project.disabled:hover { background-color: transparent; }
+.btn-project.disabled:hover {
+  background-color: transparent;
+}
 
-/* === FOOTER & HOME BUTTON === */
-.projects-footer { text-align: center; margin-top: 40px; }
-.btn-home { display: inline-block; background-color: transparent; border: 2px solid #64ffda; border-radius: 8px; font-family: "Merienda", cursive; color: #64ffda; font-size: 18px; font-weight: 700; padding: 14px 30px; text-decoration: none; transition: all 0.3s ease; }
-.btn-home:hover { background-color: #64ffda; color: #0a192f; box-shadow: 0 0 20px rgba(100, 255, 218, 0.2); }
+/* ===== Footer ===== */
 
-/* === RESPONSIVE DESIGN === */
+.projects-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn-home {
+  display: inline-block;
+  background-color: transparent;
+  border: 2px solid #64ffda;
+  border-radius: 8px;
+  font-family: "Merienda", cursive;
+  color: #64ffda;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-home:hover {
+  background-color: #64ffda;
+  color: #0a192f;
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+}
+
+/* ===== Responsive Design ===== */
+
 @media (max-width: 900px) {
   .project-entry, .layout-reversed {
     flex-direction: column;

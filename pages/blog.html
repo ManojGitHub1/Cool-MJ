@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Manoj</title>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/blog.css">
+  
+  <link rel="icon" href="../images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Final fonts for all sub-pages -->
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Neonderthaw&family=Sacramento&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="aurora-background"></div>
+
+  <div class="blog-container">
+    <header class="blog-header" data-aos="fade-down">
+      <h1>My Thoughts</h1>
+      <p class="header-subtitle">Exploring technology, development, and the occasional creative spark.</p>
+    </header>
+
+    <main class="post-list" data-aos="fade-up" data-aos-delay="200">
+      
+      <!-- Entry for your first blog post -->
+      <a href="posts/post1.html" class="post-card">
+        <div class="card-content">
+          <h2>My Journey into Web Development</h2>
+          <p class="post-meta">August 31, 2025</p>
+          <p class="post-excerpt">From my first "Hello, World!" to building complex applications, this is the story of how I found my passion in the ever-evolving world of web development.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+
+      <!-- Placeholder for a future post -->
+      <a href="#" class="post-card disabled-link">
+        <div class="card-content">
+          <h2>Why Clean Code Matters (And How to Write It)</h2>
+          <p class="post-meta">Coming Soon</p>
+          <p class="post-excerpt">A deep dive into the principles of writing code that is not just functional, but also readable, maintainable, and a joy to work with.</p>
+          <span class="read-more">Read More →</span>
+        </div>
+      </a>
+      
+      <!-- To add a new post, just copy one of the <a class="post-card"> blocks and update it! -->
+
+    </main>
+    
+    <footer class="blog-footer" data-aos="fade-up">
+      <a class="btn-home" href="../index.html">Return to the Clouds</a>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
+  </script>
+</body>
+</html>

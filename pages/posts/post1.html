@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Journey into Web Development | Manoj</title>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- It uses the same stylesheet as the blog listing page -->
+  <link rel="stylesheet" href="../../css/blog.css">
+  
+  <link rel="icon" href="../../images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Sacramento&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="aurora-background"></div>
+
+  <div class="post-container">
+    <header class="post-header" data-aos="fade-down">
+      <h1>My Journey into Web Development</h1>
+      <p class="post-meta">Published on August 31, 2025</p>
+    </header>
+
+    <article class="post-content" data-aos="fade-up" data-aos-delay="200">
+      <p>
+        Every developer has their origin story, the moment a spark of curiosity ignites into a full-blown passion. For me, it wasn't a single event, but a gradual realization that the web was more than just a collection of pages—it was a canvas for creation. My journey started with a simple question: "How does this actually work?"
+      </p>
+      
+      <h3>The "Aha!" Moment</h3>
+      <p>
+        I remember spending an entire weekend trying to get a simple piece of JavaScript to work. It was a frustrating, coffee-fueled blur of trial and error. But when that alert box finally popped up with the text "Hello, World!", the feeling was electric. In that moment, I understood the power of code: the ability to give the browser instructions and see it come to life.
+      </p>
+
+      <!-- This is how you share a code snippet -->
+      <h4>An Example Code Block:</h4>
+      <pre><code class="language-javascript">// The simple function that started it all
+function greetUser() {
+  const userName = prompt("What is your name?");
+  if (userName) {
+    alert(`Hello, ${userName}! Welcome.`);
+  }
+}</code></pre>
+
+      <h3>Embracing the Challenges</h3>
+      <p>
+        Of course, it wasn't all smooth sailing. I've spent countless hours debugging, facing cryptic error messages, and questioning my sanity. But every challenge overcome was a lesson learned. Every bug squashed was a victory that made me a better, more resilient developer. This journey is one of continuous learning, and that's what makes it so exciting.
+      </p>
+    </article>
+    
+    <footer class="post-footer" data-aos="fade-up">
+      <a class="btn-home" href="../blog.html">← Back to All Posts</a>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
+  </script>
+</body>
+</html>
