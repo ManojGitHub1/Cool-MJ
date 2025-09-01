@@ -361,31 +361,101 @@ body:not(.light-mode) .middle-container::before {
     );
   pointer-events: none;
 }
+
+
 body:not(.light-mode) h1 {
-  color: #00ffff;
-  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff,
-    0 0 40px #0088ff;
-  animation: neonGlowTitle 3s ease-in-out infinite alternate;
+  color: #66ccff; /* blue core text color */
+  text-shadow: 
+    0 0 2px #00ccff,   /* bright blue center */
+    0 0 6px #00ccff,   /* inner tube glow */
+    0 0 14px #00aaff,  /* cyan-blue diffusion */
+    0 0 28px #0088ff,  /* electric blue edge */
+    0 0 55px #0066ff,  /* deeper haze */
+    0 0 90px #0044ff;  /* far glow */
+  animation: neonCycle 6s infinite;
 }
-@keyframes neonGlowTitle {
-  from {
+
+@keyframes neonCycle {
+  /* Chaotic flicker */
+  0% {
+    opacity: 0.9;
+    filter: brightness(1.2);
+    text-shadow: 0 0 2px #00ccff, 0 0 6px #00ccff, 0 0 20px #00aaff, 0 0 40px #0088ff;
+  }
+  5% {
+    opacity: 0.5;
+    filter: brightness(0.6);
+    text-shadow: 0 0 1px #00aaff, 0 0 4px #00ccff, 0 0 12px #0066ff;
+  }
+  12% {
+    opacity: 1;
+    filter: brightness(2.2);
+    text-shadow: 0 0 3px #00ccff, 0 0 9px #00ccff, 0 0 25px #00aaff, 0 0 60px #0088ff;
+  }
+  18% {
+    opacity: 0.6;
+    filter: brightness(0.8);
+    text-shadow: 0 0 2px #00aaff, 0 0 5px #00ccff, 0 0 15px #0088ff;
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(2.5);
+    text-shadow: 0 0 4px #00ccff, 0 0 12px #00aaff, 0 0 30px #0088ff, 0 0 70px #0066ff;
+  }
+
+  /* Breathing stable glow */
+  40% {
+    opacity: 1;
+    filter: brightness(2);
+    text-shadow: 0 0 3px #00ccff, 0 0 10px #00aaff, 0 0 25px #0088ff, 0 0 60px #0066ff;
+  }
+  55% {
+    opacity: 0.95;
+    filter: brightness(1.7);
+    text-shadow: 0 0 2px #00aaff, 0 0 9px #00ccff, 0 0 22px #0088ff, 0 0 55px #0066ff;
+  }
+  65% {
+    opacity: 1;
+    filter: brightness(2.1);
+    text-shadow: 0 0 3px #00ccff, 0 0 11px #00aaff, 0 0 27px #0088ff, 0 0 65px #0044ff;
+  }
+
+  /* Back to flicker */
+  75% {
+    opacity: 0.7;
     filter: brightness(1);
+    text-shadow: 0 0 2px #00aaff, 0 0 6px #00ccff, 0 0 18px #0088ff;
   }
-  to {
-    filter: brightness(1.3);
+  85% {
+    opacity: 0.4;
+    filter: brightness(0.5);
+    text-shadow: 0 0 1px #0088ff, 0 0 4px #00ccff, 0 0 12px #0066ff;
+  }
+  100% {
+    opacity: 0.95;
+    filter: brightness(1.9);
+    text-shadow: 0 0 3px #00ccff, 0 0 10px #00aaff, 0 0 25px #0088ff, 0 0 60px #0044ff;
   }
 }
+
+
 body:not(.light-mode) .subtitle {
   color: #ff00ff;
   text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
 
+
 /* Dark mode "Pro" badge */
 body:not(.light-mode) .pro {
-  background: linear-gradient(45deg, #22d3ee, #d946ef);
-  color: #000000;
-  box-shadow: 0 0 15px rgba(229, 97, 249, 0.79), 0 0 25px rgba(109, 228, 246, 0.74);
+  background: linear-gradient(135deg, #ffdd00, #f8b12e, #ffdd00);
+  color: #000000; /* black text stays sharp */
+  box-shadow: 
+    0 0 12px rgba(255, 221, 0, 0.9),
+    0 0 20px rgba(255, 49, 49, 0.8),
+    0 0 28px rgba(255, 0, 153, 0.7),
+    0 0 40px rgba(255, 49, 49, 0.6);
 }
+
 
 body:not(.light-mode) h3,
 body:not(.light-mode) h4 {
