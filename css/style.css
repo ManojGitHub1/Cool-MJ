@@ -478,25 +478,18 @@ body:not(.light-mode) #form-status.error {
   background: #171515;
   box-shadow: 0 8px 30px rgba(23, 21, 21, 0.4);
 }
-.footer-links a.discord:hover {
-  background: #5865f2;
-  box-shadow: 0 8px 30px rgba(88, 101, 242, 0.4);
+/* Medium button hover effect */
+.footer-links a.medium:hover {
+  background: #12100e;
+  box-shadow: 0 8px 30px rgba(18, 16, 14, 0.4);
 }
-.footer-links a.x-social:hover {
-  background: #000000;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+
+/* Kaggle button hover effect */
+.footer-links a.kaggle:hover {
+  background: #20beff;
+  box-shadow: 0 8px 30px rgba(32, 190, 255, 0.4);
 }
-.footer-links a.instagram:hover {
-  background: linear-gradient(
-    45deg,
-    #f09433,
-    #e6683c,
-    #dc2743,
-    #cc2366,
-    #bc1888
-  );
-  box-shadow: 0 8px 40px rgba(200, 40, 90, 0.4);
-}
+
 .copyright {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.9);
