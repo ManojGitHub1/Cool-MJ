@@ -10,8 +10,10 @@
   <meta property="og:image" content="https://manojgithub1.github.io/Cool-MJ/images/share-card.png">
   
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <!-- Link to the shared stylesheet -->
   <link rel="stylesheet" href="../css/about.css">
+  <link rel="stylesheet" href="../css/style.css" />
   
   <link rel="icon" href="../images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,9 +22,6 @@
 </head>
 <!-- Body starts in light-mode by default -->
 <body class="light-mode">
-
-  <!-- Particles.js container for dark mode -->
-  <div id="particles-js"></div>
 
   <!-- Using dev-container for consistent layout -->
   <div class="dev-container">
@@ -90,9 +89,16 @@
     <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.79 9.79 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32z"/></svg>
   </button>
   
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- GLOBAL MUSIC WIDGET -->
+  <audio id="audio-player" src=""></audio>
+  <div id="music-widget">
+    <div class="collapsed-view" id="expand-btn"><img src="" alt="Album Art" id="album-art-collapsed" class="album-art"><div class="song-info-collapsed"><p class="now-playing-text">Now Playing</p><p class="song-title" id="song-title-collapsed">Loading...</p></div><button class="widget-btn" id="play-pause-collapsed"><i class='bx bx-play'></i></button></div>
+    <div class="expanded-view"><div class="widget-header"><div class="header-text"><i class='bx bxs-music'></i><span>Now Playing</span></div><div class="header-buttons"><button class="widget-btn" id="playlist-btn" title="Playlist"><i class='bx bxs-playlist'></i></button><button class="widget-btn" id="collapse-btn" title="Collapse"><i class='bx bx-chevron-down'></i></button></div></div><div class="song-details-expanded"><img src="" alt="Album Art" id="album-art-expanded" class="album-art"><div class="song-info-expanded"><p class="song-title" id="song-title-expanded">Loading</p><p class="song-artist" id="song-artist-expanded">...</p></div></div><div class="progress-container" id="progress-container"><div class="waveform waveform--hybrid" data-quiet="false" aria-hidden="false"><svg id="waveform-track" class="waveform-svg" viewBox="0 0 300 40" preserveAspectRatio="none"><path d="M0 20 L5 20 L10 12 L15 28 L20 15 L25 25 L30 10 L35 30 L40 5 L45 35 L50 18 L55 22 L60 8 L65 32 L70 14 L75 26 L80 12 L85 28 L90 20 L95 20 L100 15 L105 25 L110 10 L115 30 L120 20 L125 20 L130 2 L135 38 L140 18 L145 22 L150 5 L155 35 L160 12 L165 28 L170 20 L175 20 L180 15 L185 25 L190 10 L195 30 L200 18 L205 22 L210 20 L215 20 L220 12 L225 28 L230 15 L235 25 L240 10 L245 30 L250 5 L255 35 L260 20 L265 20 L270 2 L275 38 L280 18 L285 22 L290 5 L295 35 L300 20"></path></svg><svg id="waveform-progress" class="waveform-svg progress" viewBox="0 0 300 40" preserveAspectRatio="none"><path d="M0 20 L5 20 L10 12 L15 28 L20 15 L25 25 L30 10 L35 30 L40 5 L45 35 L50 18 L55 22 L60 8 L65 32 L70 14 L75 26 L80 12 L85 28 L90 20 L95 20 L100 15 L105 25 L110 10 L115 30 L120 20 L125 20 L130 2 L135 38 L140 18 L145 22 L150 5 L155 35 L160 12 L165 28 L170 20 L175 20 L180 15 L185 25 L190 10 L195 30 L200 18 L205 22 L210 20 L215 20 L220 12 L225 28 L230 15 L235 25 L240 10 L245 30 L250 5 L255 35 L260 20 L265 20 L270 2 L275 38 L280 18 L285 22 L290 5 L295 35 L300 20"></path></svg><div class="bars" aria-hidden="true"><span class="bar" style="--i:0" data-zone="left"></span><span class="bar" style="--i:1" data-zone="left"></span><span class="bar" style="--i:2" data-zone="left"></span><span class="bar" style="--i:3" data-zone="left"></span><span class="bar" style="--i:4" data-zone="left"></span><span class="bar" style="--i:5" data-zone="left"></span><span class="bar" style="--i:6" data-zone="left"></span><span class="bar" style="--i:7" data-zone="left"></span><span class="bar" style="--i:8" data-zone="left"></span><span class="bar" style="--i:9" data-zone="left"></span><span class="bar" style="--i:10"></span><span class="bar" style="--i:11"></span><span class="bar" style="--i:12"></span><span class="bar" style="--i:13"></span><span class="bar" style="--i:14"></span><span class="bar" style="--i:15"></span><span class="bar" style="--i:16"></span><span class="bar" style="--i:17"></span><span class="bar" style="--i:18"></span><span class="bar" style="--i:19"></span><span class="bar" style="--i:20"></span><span class="bar" style="--i:21"></span><span class="bar" style="--i:22"></span><span class="bar" style="--i:23"></span><span class="bar" style="--i:24"></span><span class="bar" style="--i:25"></span><span class="bar" style="--i:26"></span><span class="bar" style="--i:27"></span><span class="bar" style="--i:28"></span><span class="bar" style="--i:29"></span><span class="bar" style="--i:30"></span><span class="bar" style="--i:31"></span><span class="bar" style="--i:32"></span><span class="bar" style="--i:33"></span><span class="bar" style="--i:34"></span><span class="bar" style="--i:35"></span></div></div><div class="time-display"><span id="current-time">0:00</span><span id="duration">0:00</span></div></div><div class="controls-and-volume-container"><div class="controls-container"><button class="widget-btn" id="prev-btn" title="Previous"><i class='bx bx-skip-previous'></i></button><button class="widget-btn main-control" id="play-pause-expanded" title="Play/Pause"><i class='bx bx-play'></i></button><button class="widget-btn" id="next-btn" title="Next"><i class='bx bx-skip-next'></i></button></div><div class="volume-container"><i class='bx bxs-volume-low'></i><input type="range" id="volume-slider" class="volume-slider" value="70" min="0" max="100" title="Volume" orient="horizontal"><i class='bx bxs-volume-full'></i></div></div></div>
+    <div id="playlist-view" class="playlist-view"><div class="playlist-header"><h4>Playlist</h4><button class="widget-btn" id="close-playlist-btn" title="Close"><i class='bx bx-x'></i></button></div><div id="playlist-container" class="playlist-container"></div></div>
+  </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Link to the shared javascript file -->
   <script src="../js/pages.js"></script>
+  <script src="../js/music.js"></script>
 </body>
 </html>

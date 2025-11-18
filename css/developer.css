@@ -367,22 +367,6 @@ body.light-mode .moon-icon { opacity: 0; transform: rotate(90deg) scale(0); }
 body:not(.light-mode) .sun-icon { opacity: 0; transform: rotate(-90deg) scale(0); }
 body:not(.light-mode) .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
 
-/* ===== PARTICLES BACKGROUND ===== */
-#particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-body:not(.light-mode) #particles-js {
-  opacity: 1;
-}
-
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 767px) {
   .dev-container { padding: 40px 15px; }

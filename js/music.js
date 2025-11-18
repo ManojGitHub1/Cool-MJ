@@ -1,4 +1,86 @@
-// in js/music.js
+// ============================================================================
+// GLOBAL MUSIC PLAYER - Persistent Across Pages
+// ============================================================================
+
+/**
+ * MusicPlayerState - Manages persistent state across page navigation
+ * Stores: song index, playback position, volume, playing status, widget state
+ */
+class MusicPlayerState {
+    constructor() {
+        this.storageKey = 'musicPlayerState';
+        this.autosaveInterval = null;
+    }
+
+    /**
+     * Save current state to localStorage
+     */
+    save(state) {
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                ...state,
+                timestamp: Date.now()
+            }));
+        } catch (error) {
+            console.error('Failed to save music state:', error);
+        }
+    }
+
+    /**
+     * Load state from localStorage
+     */
+    load() {
+        try {
+            const stored = localStorage.getItem(this.storageKey);
+            if (!stored) return null;
+            
+            const state = JSON.parse(stored);
+            const timeSinceUpdate = Date.now() - state.timestamp;
+            
+            // If more than 1 hour has passed, consider session expired
+            if (timeSinceUpdate > 3600000) {
+                this.clear();
+                return null;
+            }
+            
+            return state;
+        } catch (error) {
+            console.error('Failed to load music state:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Clear saved state
+     */
+    clear() {
+        try {
+            localStorage.removeItem(this.storageKey);
+        } catch (error) {
+            console.error('Failed to clear music state:', error);
+        }
+    }
+
+    /**
+     * Start periodic autosave (every 2 seconds while playing)
+     */
+    startAutosave(callback) {
+        this.stopAutosave();
+        this.autosaveInterval = setInterval(callback, 2000);
+    }
+
+    /**
+     * Stop periodic autosave
+     */
+    stopAutosave() {
+        if (this.autosaveInterval) {
+            clearInterval(this.autosaveInterval);
+            this.autosaveInterval = null;
+        }
+    }
+}
+
+// ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. DEFINE YOUR SONGS HERE ---
@@ -59,7 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // --- 2. STATE & UTILS ---
+    // --- 2. STATE & PERSISTENCE MANAGER ---
+    const stateManager = new MusicPlayerState();
     let currentSongIndex = 0;
     let isPlaying = false;
     
@@ -120,6 +203,79 @@ document.addEventListener('DOMContentLoaded', () => {
     function prevSong() { currentSongIndex = (currentSongIndex - 1 + SONGS.length) % SONGS.length; loadSong(SONGS[currentSongIndex]); playSong(); }
     function nextSong() { currentSongIndex = (currentSongIndex + 1) % SONGS.length; loadSong(SONGS[currentSongIndex]); playSong(); }
     function formatTime(seconds) { const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; }
+
+    /**
+     * Get current player state for persistence
+     */
+    function getCurrentState() {
+        return {
+            currentSongIndex,
+            currentTime: audioPlayer.currentTime || 0,
+            volume: audioPlayer.volume,
+            isPlaying,
+            isExpanded: widget.classList.contains('expanded'),
+            isPlaylistOpen: widget.classList.contains('playlist-open')
+        };
+    }
+
+    /**
+     * Save state to localStorage
+     */
+    function saveState() {
+        stateManager.save(getCurrentState());
+    }
+
+    /**
+     * Restore state from localStorage
+     */
+    function restoreState() {
+        const savedState = stateManager.load();
+        if (!savedState) return false;
+
+        // Restore song index
+        if (savedState.currentSongIndex !== undefined && savedState.currentSongIndex < SONGS.length) {
+            currentSongIndex = savedState.currentSongIndex;
+        }
+
+        // Load the song
+        loadSong(SONGS[currentSongIndex]);
+
+        // Restore volume
+        if (savedState.volume !== undefined) {
+            audioPlayer.volume = savedState.volume;
+            volumeSlider.value = savedState.volume * 100;
+            setVolume();
+        }
+
+        // Restore playback position (wait for metadata to load)
+        if (savedState.currentTime !== undefined && savedState.currentTime > 0) {
+            const restoreTime = () => {
+                audioPlayer.currentTime = savedState.currentTime;
+                audioPlayer.removeEventListener('loadedmetadata', restoreTime);
+            };
+            audioPlayer.addEventListener('loadedmetadata', restoreTime);
+        }
+
+        // Restore widget state
+        if (savedState.isExpanded) {
+            widget.classList.add('expanded');
+        }
+        if (savedState.isPlaylistOpen) {
+            widget.classList.add('playlist-open');
+        }
+
+        // Restore playing state (with user interaction requirement)
+        if (savedState.isPlaying) {
+            // Attempt to auto-resume (may be blocked by browser autoplay policy)
+            const attemptAutoPlay = () => {
+                playSong();
+                audioPlayer.removeEventListener('loadeddata', attemptAutoPlay);
+            };
+            audioPlayer.addEventListener('loadeddata', attemptAutoPlay);
+        }
+
+        return true;
+    }
 
     function updateProgress() {
         const { duration, currentTime } = audioPlayer;
@@ -193,8 +349,57 @@ document.addEventListener('DOMContentLoaded', () => {
     
     volumeSlider.addEventListener('input', setVolume);
 
-    // --- 6. INITIALIZATION ---
-    loadSong(SONGS[currentSongIndex]);
+    // --- 6. STATE PERSISTENCE EVENTS ---
+    
+    /**
+     * Save state before page unload (navigation)
+     */
+    window.addEventListener('beforeunload', () => {
+        saveState();
+        stateManager.stopAutosave();
+    });
+
+    /**
+     * Save state periodically while playing
+     */
+    audioPlayer.addEventListener('play', () => {
+        stateManager.startAutosave(saveState);
+    });
+
+    audioPlayer.addEventListener('pause', () => {
+        stateManager.stopAutosave();
+        saveState();
+    });
+
+    /**
+     * Save state on song change, volume change, widget state change
+     */
+    const debouncedSave = (() => {
+        let timeout;
+        return () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(saveState, 500);
+        };
+    })();
+
+    // Save on widget state changes
+    expandBtn.addEventListener('click', debouncedSave);
+    collapseBtn.addEventListener('click', debouncedSave);
+    playlistBtn.addEventListener('click', debouncedSave);
+    closePlaylistBtn.addEventListener('click', debouncedSave);
+
+    // --- 7. INITIALIZATION ---
+    
+    // Try to restore previous state, fallback to default
+    const stateRestored = restoreState();
+    
+    if (!stateRestored) {
+        // First time or no saved state - initialize fresh
+        loadSong(SONGS[currentSongIndex]);
+        setVolume();
+    }
+    
     renderPlaylist();
-    setVolume();
+    
+    console.log('🎵 Global Music Player initialized with state persistence');
 });

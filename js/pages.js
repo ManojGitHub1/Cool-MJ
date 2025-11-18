@@ -21,18 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
       if (theme === 'neon') {
           body.classList.remove('light-mode');
           themeToggle.setAttribute('aria-pressed', 'true');
-          // Initialize particles only when switching to dark mode and if not already running
-          if (window.particlesJS && (!window.pJSDom || window.pJSDom.length === 0)) {
-              initParticles();
-          }
       } else { // Default to light mode
           body.classList.add('light-mode');
           themeToggle.setAttribute('aria-pressed', 'false');
-          // Destroy particles when switching to light mode to save resources
-          if (window.pJSDom && window.pJSDom.length > 0) {
-              window.pJSDom[0].pJS.fn.vendors.destroypJS();
-              window.pJSDom = [];
-          }
       }
   };
   
@@ -51,16 +42,4 @@ document.addEventListener("DOMContentLoaded", function() {
       applyTheme(newTheme);
       localStorage.setItem('siteTheme', newTheme);
   });
-
-  // =================================================================
-  // PARTICLES.JS INITIALIZATION (FOR DARK MODE)
-  // =================================================================
-  const initParticles = () => {
-      if (document.getElementById('particles-js')) {
-          particlesJS('particles-js', {
-              "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#00ffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5, "random": true }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ff00ff", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" } },
-              "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } } }
-          });
-      }
-  };
 });
