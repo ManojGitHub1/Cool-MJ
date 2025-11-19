@@ -1,0 +1,37 @@
+/* =================================================================
+   FOOTER COMPONENT (Shared across all subpages)
+   Extracted from: developer.css, projects.css, about.css, blog.css
+   ================================================================= */
+
+/* ===== Footer Container ===== */
+.dev-footer {
+  text-align: center;
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid #dce5e4;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #5c706f;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #3d4a49;
+  margin-top: 20px;
+}
+
+/* ===== Dark Mode Footer ===== */
+body:not(.light-mode) .dev-footer {
+  border-color: #132f4c;
+}
+
+body:not(.light-mode) .footer-text {
+  color: #8892b0;
+}
+
+body:not(.light-mode) .copyright {
+  color: #64ffda;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}

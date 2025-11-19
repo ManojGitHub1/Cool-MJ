@@ -1,0 +1,50 @@
+/* =================================================================
+   NAVIGATION COMPONENT (Shared across all subpages)
+   Extracted from: developer.css, projects.css, about.css, blog.css
+   ================================================================= */
+
+/* ===== Navigation Bar ===== */
+.dev-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 80px;
+  padding: 15px 0;
+  border-top: 1px solid #dce5e4;
+  border-bottom: 1px solid #dce5e4;
+  transition: border-color 0.4s ease;
+}
+
+.dev-nav a {
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+  color: #11999e;
+}
+
+.dev-nav a:hover {
+  color: #30e3cb;
+}
+
+/* ===== Dark Mode Navigation ===== */
+body:not(.light-mode) .dev-nav {
+  border-color: #132f4c;
+}
+
+body:not(.light-mode) .dev-nav a {
+  color: #8892b0;
+}
+
+body:not(.light-mode) .dev-nav a:hover {
+  color: #64ffda;
+}
+
+/* ===== Responsive Navigation ===== */
+@media (max-width: 767px) {
+  .dev-nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

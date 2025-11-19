@@ -1,0 +1,192 @@
+/* =================================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Extracted from existing styles - VALUES UNCHANGED
+   ================================================================= */
+
+:root {
+  /* ===== COLOR PALETTE (Light Mode) ===== */
+  /* Primary Colors */
+  --color-primary: #11999e;
+  --color-primary-light: #30e3cb;
+  --color-primary-gradient-start: #1dd1a1;
+  --color-primary-gradient-end: #11999e;
+  
+  /* Secondary Colors */
+  --color-secondary: #66bfbf;
+  --color-secondary-dark: #0d7a7e;
+  
+  /* Accent Colors */
+  --color-accent: #4c29bd;
+  --color-accent-gradient-start: #667eea;
+  --color-accent-gradient-end: #764ba2;
+  
+  /* Text Colors */
+  --color-text-primary: #3d4a49;
+  --color-text-secondary: #5c706f;
+  --color-text-tertiary: #8892b0;
+  
+  /* Background Colors */
+  --color-bg-body: #fbfdfd;
+  --color-bg-alt: #f4f8f9;
+  --color-bg-card: #ffffff;
+  --color-bg-overlay: rgba(255, 255, 255, 0.4);
+  
+  /* Border Colors */
+  --color-border: #dce5e4;
+  --color-border-light: #eaf2f1;
+  --color-border-primary: #b3e0dc;
+  
+  /* Special Colors */
+  --color-success: #e4f9f5;
+  --color-error: #f8d7da;
+  --color-like: #ff6b6b;
+  --color-like-light: #ffb6c1;
+  
+  /* Gradient Backgrounds */
+  --gradient-hero: linear-gradient(135deg, #d1f8f1 0%, #c9eff6 100%);
+  --gradient-footer: linear-gradient(135deg, #66bfbf 0%, #40a4c8 100%);
+  --gradient-button: linear-gradient(45deg, #1dd1a1, #11999e);
+  
+  /* ===== SPACING SCALE ===== */
+  --space-xs: 5px;
+  --space-sm: 10px;
+  --space-md: 15px;
+  --space-lg: 20px;
+  --space-xl: 30px;
+  --space-xxl: 40px;
+  --space-3xl: 60px;
+  --space-4xl: 80px;
+  --space-5xl: 100px;
+  
+  /* ===== TYPOGRAPHY ===== */
+  /* Font Families */
+  --font-primary: 'Merienda', cursive;
+  --font-heading: 'Sacramento', cursive;
+  --font-code: 'Fira Code', monospace;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.7rem;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.8rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.2rem;
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.7;
+  --line-height-relaxed: 1.8;
+  --line-height-loose: 1.9;
+  
+  /* ===== BORDER RADIUS ===== */
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
+  --radius-2xl: 25px;
+  --radius-3xl: 30px;
+  --radius-round: 50px;
+  --radius-circle: 50%;
+  
+  /* ===== SHADOWS ===== */
+  --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 25px 50px rgba(17, 153, 158, 0.2);
+  --shadow-2xl: 0 25px 50px rgba(17, 153, 158, 0.4);
+  --shadow-button: 0 8px 25px rgba(29, 209, 161, 0.4);
+  --shadow-button-hover: 0 15px 40px rgba(29, 209, 161, 0.5);
+  --shadow-image: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-like: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-like-hover: 0 6px 16px rgba(255, 107, 107, 0.25);
+  
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  --transition-slower: 0.5s ease;
+  --transition-color: color 0.3s ease;
+  --transition-transform: transform 0.3s ease;
+  --transition-all: all 0.3s ease;
+  --transition-cubic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ===== BREAKPOINTS (for reference) ===== */
+  --breakpoint-mobile: 767px;
+  --breakpoint-tablet: 900px;
+  --breakpoint-desktop: 1100px;
+  
+  /* ===== Z-INDEX SCALE ===== */
+  --z-base: 1;
+  --z-elevated: 2;
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-fixed: 999;
+  --z-modal: 1000;
+  --z-tooltip: 1001;
+}
+
+/* =================================================================
+   DARK MODE COLOR OVERRIDES
+   ================================================================= */
+body:not(.light-mode) {
+  /* Primary Colors (Dark) */
+  --color-primary: #64ffda;
+  --color-primary-light: #64ffda;
+  
+  /* Secondary Colors (Dark) */
+  --color-secondary: #66ccff;
+  --color-secondary-neon: #00ccff;
+  
+  /* Text Colors (Dark) */
+  --color-text-primary: #e0e6ed;
+  --color-text-secondary: #a8b2d1;
+  --color-text-tertiary: #8892b0;
+  --color-text-heading: #ccd6f6;
+  
+  /* Background Colors (Dark) */
+  --color-bg-body: #0a192f;
+  --color-bg-alt: #0a0e27;
+  --color-bg-card: rgba(17, 34, 64, 0.75);
+  --color-bg-overlay: rgba(26, 31, 58, 0.8);
+  --color-bg-card-solid: #112240;
+  --color-bg-card-hover: #1a3253;
+  
+  /* Border Colors (Dark) */
+  --color-border: #132f4c;
+  --color-border-light: rgba(100, 255, 218, 0.1);
+  --color-border-primary: rgba(100, 255, 218, 0.2);
+  
+  /* Gradient Backgrounds (Dark) */
+  --gradient-hero: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+  --gradient-footer: #0a0e27;
+  --gradient-button: linear-gradient(45deg, #00ffff, #ff00ff);
+  
+  /* Shadows (Dark) */
+  --shadow-xs: 0 2px 8px rgba(255, 107, 107, 0.2);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 10px 30px rgba(2, 12, 27, 0.8);
+  --shadow-xl: 0 0 25px rgba(100, 255, 218, 0.15);
+  --shadow-2xl: 0 0 60px rgba(0, 255, 255, 0.8);
+  --shadow-button: 0 0 30px rgba(0, 255, 255, 0.6);
+  --shadow-button-hover: 0 0 50px rgba(0, 255, 255, 1);
+  --shadow-image: 0 0 40px rgba(0, 255, 255, 0.6);
+  --shadow-like: 0 2px 8px rgba(255, 107, 107, 0.2);
+  --shadow-like-hover: 0 6px 16px rgba(255, 107, 107, 0.4);
+  
+  /* Neon Colors (Dark Mode Special) */
+  --color-neon-blue: #00ccff;
+  --color-neon-cyan: #00ffff;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-yellow: #ffdd00;
+}

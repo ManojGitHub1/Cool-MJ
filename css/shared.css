@@ -1,0 +1,18 @@
+/* =================================================================
+   MASTER CSS - SHARED STYLES FOR SUBPAGES
+   This file imports all shared components in the correct order
+   Pages can import this + their page-specific CSS
+   ================================================================= */
+
+/* ===== 1. BASE (Variables, Resets) ===== */
+@import 'base/variables.css';
+@import 'base/reset.css';
+
+/* ===== 2. LAYOUT (Structure) ===== */
+@import 'layout/header.css';
+@import 'layout/navigation.css';
+@import 'layout/footer.css';
+
+/* ===== 3. COMPONENTS (Reusable) ===== */
+@import 'components/theme-toggle.css';
+@import 'components/music-widget.css';

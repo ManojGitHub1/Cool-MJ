@@ -1,0 +1,188 @@
+/* =================================================================
+   DEVELOPER PAGE SPECIFIC STYLES
+   Unique styles only - shared styles in shared.css
+   ================================================================= */
+
+/* ===== Tech Stack Section ===== */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.tech-item {
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background-color: #e4f9f5;
+  color: #11999e;
+  border: 1px solid #b3e0dc;
+}
+
+.tech-item:hover {
+  background-color: #11999e;
+  color: #ffffff;
+  transform: translateY(-5px);
+}
+
+/* ===== Projects Section (Card View) ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid #dce5e4;
+  border-radius: 10px;
+  text-align: left;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(17, 153, 158, 0.2);
+  border-color: #66bfbf;
+}
+
+.card-header {
+  padding: 20px 25px 0;
+}
+
+.card-header h3 {
+  font-size: 1.6rem;
+  color: #11999e;
+  margin: 0;
+}
+
+.card-body {
+  padding: 15px 25px;
+}
+
+.card-body p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.card-footer {
+  padding: 20px 25px;
+  margin-top: 10px;
+  border-top: 1px solid #eaf2f1;
+}
+
+.card-footer p {
+  font-size: 0.9rem;
+  color: #11999e;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ===== Recognitions Section ===== */
+.certs ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.certs li {
+  padding: 15px 20px;
+  border-left: 3px solid #66bfbf;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  border-radius: 0 5px 5px 0;
+  font-size: 1.1rem;
+  text-align: left;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.certs li:hover {
+  background-color: #e4f9f5;
+}
+
+.certs li strong {
+  color: #11999e;
+}
+
+/* =================================================================
+   DARK MODE OVERRIDES
+   ================================================================= */
+
+/* Dark Mode: Tech Stack */
+body:not(.light-mode) .tech-item {
+  background-color: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+body:not(.light-mode) .tech-item:hover {
+  background-color: #64ffda;
+  color: #0a192f;
+}
+
+/* Dark Mode: Projects */
+body:not(.light-mode) .project-card {
+  background: rgba(17, 34, 64, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  box-shadow: none;
+}
+
+body:not(.light-mode) .project-card:hover {
+  border-color: #64ffda;
+  box-shadow: 0 0 25px rgba(100, 255, 218, 0.15);
+}
+
+body:not(.light-mode) .card-header h3 {
+  color: #ccd6f6;
+}
+
+body:not(.light-mode) .card-body p {
+  color: #a8b2d1;
+}
+
+body:not(.light-mode) .card-footer {
+  border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+body:not(.light-mode) .card-footer p {
+  color: #64ffda;
+}
+
+/* Dark Mode: Recognitions */
+body:not(.light-mode) .certs li {
+  border-left: 3px solid #64ffda;
+  background-color: #112240;
+  box-shadow: none;
+}
+
+body:not(.light-mode) .certs li:hover {
+  background-color: #1a3253;
+}
+
+body:not(.light-mode) .certs li strong {
+  color: #ccd6f6;
+}
+
+/* =================================================================
+   RESPONSIVE STYLES
+   ================================================================= */
+@media (max-width: 767px) {
+  .card-header h3 {
+    font-size: 1.4rem;
+  }
+  
+  .card-body p {
+    font-size: 0.95rem;
+  }
+  
+  .certs li {
+    font-size: 1rem;
+  }
+}

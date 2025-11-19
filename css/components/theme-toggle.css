@@ -1,0 +1,64 @@
+/* =================================================================
+   THEME TOGGLE WIDGET (Shared across all pages)
+   Extracted from: style.css, developer.css, projects.css, about.css, blog.css
+   ================================================================= */
+
+/* ===== Theme Toggle Button ===== */
+.theme-toggle-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s;
+}
+
+.theme-toggle-button:hover {
+  transform: scale(1.08) rotate(12deg);
+}
+
+/* ===== Theme Icons ===== */
+.theme-icon {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sun-icon {
+  color: #ffd166;
+}
+
+.moon-icon {
+  color: #00ffff;
+}
+
+/* ===== Icon Transitions ===== */
+body.light-mode .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+body.light-mode .moon-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+}
+
+body:not(.light-mode) .sun-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
+body:not(.light-mode) .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
