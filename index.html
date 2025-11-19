@@ -313,8 +313,20 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/meta-manager.js"></script>
+  <script src="js/config/meta-config.js"></script>
   <script src="js/script.js"></script>
   <script src="js/music.js"></script>
+  
+  <!-- Initialize Meta Tags -->
+  <script>
+    // Initialize MetaManager with site configuration
+    const metaManager = new MetaManager(SITE_CONFIG);
+    
+    // Set meta tags for home page
+    const homeMeta = getMetaConfig('home');
+    metaManager.setPageMeta(homeMeta);
+  </script>
 </body>
 
 </html>

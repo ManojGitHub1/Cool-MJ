@@ -66,6 +66,8 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/meta-manager.js"></script>
+  <script src="../js/config/meta-config.js"></script>
   <script src="../js/pages.js"></script>
   <script src="../js/music.js"></script>
   <script src="../js/blog-renderer.js"></script>
@@ -74,6 +76,9 @@
   <script>
     // Initialize blog when DOM is ready
     document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize MetaManager
+      const metaManager = new MetaManager(SITE_CONFIG);
+      
       const blogManager = new BlogManager('../blog-posts.json');
       
       // Check if we're viewing a single post or the list
@@ -91,16 +96,35 @@
           // Render single post view
           const postFound = blogManager.renderSinglePost(postSlug, 'blog-posts-container');
           
-          // Update page title if post found
+          // Update page title and meta tags if post found
           if (postFound) {
             const post = blogManager.getPostBySlug(postSlug);
             if (post) {
+              // Set page title
               document.title = `${post.title} | Manoj`;
+              
+              // Set dynamic meta tags for the blog post
+              metaManager.setTitle(post.title);
+              metaManager.setDescription(post.excerpt);
+              metaManager.setCanonicalURL(`${SITE_CONFIG.siteUrl}/pages/blog.html?post=${post.slug}`);
+              
+              // Set Open Graph tags
+              metaManager.setOpenGraph(getBlogPostOpenGraph(post));
+              
+              // Set Twitter Card tags
+              metaManager.setTwitterCard(getBlogPostTwitterCard(post));
+              
+              // Set Article structured data
+              metaManager.setStructuredData(createBlogPostSchema(post));
             }
           }
         } else {
           // Render blog list view
           blogManager.renderBlogList('blog-posts-container');
+          
+          // Set meta tags for blog listing page
+          const blogMeta = getMetaConfig('blog');
+          metaManager.setPageMeta(blogMeta);
         }
         
         // Reinitialize AOS for dynamically added content
