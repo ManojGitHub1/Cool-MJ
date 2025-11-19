@@ -492,7 +492,7 @@ body:not(.light-mode) #form-status.error {
 
 .copyright {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #3d4a49;
   padding-top: 20px;
 }
 

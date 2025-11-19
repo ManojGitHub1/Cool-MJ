@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "slug": "my-journey-into-web-development",
+      "title": "My Journey into Web Development",
+      "excerpt": "Every developer has their origin story, the moment a spark of curiosity ignites into a full-blown passion. For me, it wasn't a single event, but a gradual realization that the web was more than just a collection of pages—it was a canvas for creation.",
+      "content": "<p>Every developer has their origin story, the moment a spark of curiosity ignites into a full-blown passion. For me, it wasn't a single event, but a gradual realization that the web was more than just a collection of pages—it was a canvas for creation. My journey started with a simple question: \"How does this actually work?\"</p><h3>The \"Aha!\" Moment</h3><p>I remember spending an entire weekend trying to get a simple piece of JavaScript to work. It was a frustrating, coffee-fueled blur of trial and error. But when that alert box finally popped up with the text \"Hello, World!\", the feeling was electric. In that moment, I understood the power of code: the ability to give the browser instructions and see it come to life.</p><h4>An Example Code Block:</h4><pre><code class=\"language-javascript\">// The simple function that started it all\nfunction greetUser() {\n  const userName = prompt(\"What is your name?\");\n  if (userName) {\n    alert(`Hello, ${userName}! Welcome.`);\n  }\n}</code></pre><h3>Embracing the Challenges</h3><p>Of course, it wasn't all smooth sailing. I've spent countless hours debugging, facing cryptic error messages, and questioning my sanity. But every challenge overcome was a lesson learned. Every bug squashed was a victory that made me a better, more resilient developer. This journey is one of continuous learning, and that's what makes it so exciting.</p>",
+      "author": "Manoj",
+      "date": "2025-08-31",
+      "readTime": "3 min read",
+      "tags": ["web development", "personal story", "javascript", "learning"],
+      "category": "Personal",
+      "featured": true,
+      "likes": 46,
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
+      "imageAlt": "Laptop with code editor on a wooden desk",
+      "ogImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=630&fit=crop"
+    },
+    {
+      "id": 2,
+      "slug": "mastering-css-flexbox",
+      "title": "Mastering CSS Flexbox: A Practical Guide",
+      "excerpt": "Flexbox revolutionized CSS layouts by providing a more efficient way to arrange, align, and distribute space among items in a container. Let's dive into practical examples that will make you a Flexbox pro.",
+      "content": "<p>Flexbox revolutionized CSS layouts by providing a more efficient way to arrange, align, and distribute space among items in a container. Let's dive into practical examples that will make you a Flexbox pro.</p><h3>Why Flexbox?</h3><p>Before Flexbox, creating responsive layouts required complex CSS tricks with floats and positioning. Flexbox simplifies this by giving us powerful alignment and distribution tools with just a few properties.</p><h3>The Basics</h3><p>To use Flexbox, you need a flex container and flex items:</p><pre><code class=\"language-css\">.container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}</code></pre><h3>Real-World Example: Navigation Bar</h3><p>One of the most common use cases for Flexbox is creating navigation bars. Here's how:</p><pre><code class=\"language-css\">.nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem 2rem;\n}\n\n.nav-links {\n  display: flex;\n  gap: 2rem;\n  list-style: none;\n}</code></pre><p>With just a few lines, you have a fully responsive, centered navigation bar that distributes space evenly. No more wrestling with floats!</p>",
+      "author": "Manoj",
+      "date": "2025-09-15",
+      "readTime": "5 min read",
+      "tags": ["css", "flexbox", "web design", "tutorial"],
+      "category": "Tutorial",
+      "featured": false,
+      "likes": 67,
+      "image": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800&h=600&fit=crop",
+      "imageAlt": "CSS code on computer screen with colorful syntax highlighting",
+      "ogImage": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=1200&h=630&fit=crop"
+    },
+    {
+      "id": 3,
+      "slug": "javascript-promises-async-await",
+      "title": "Understanding JavaScript Promises and Async/Await",
+      "excerpt": "Asynchronous programming can be confusing for beginners. Let's demystify Promises and async/await with clear examples that show you how to handle asynchronous operations like a pro.",
+      "content": "<p>Asynchronous programming can be confusing for beginners. Let's demystify Promises and async/await with clear examples that show you how to handle asynchronous operations like a pro.</p><h3>What is a Promise?</h3><p>A Promise is an object representing the eventual completion or failure of an asynchronous operation. Think of it as a placeholder for a value that will be available in the future.</p><pre><code class=\"language-javascript\">const myPromise = new Promise((resolve, reject) => {\n  setTimeout(() => {\n    resolve('Success!');\n  }, 1000);\n});\n\nmyPromise.then(result => {\n  console.log(result); // 'Success!' after 1 second\n});</code></pre><h3>Async/Await: A Cleaner Syntax</h3><p>Async/await is syntactic sugar built on top of Promises. It makes asynchronous code look and behave more like synchronous code:</p><pre><code class=\"language-javascript\">async function fetchData() {\n  try {\n    const response = await fetch('https://api.example.com/data');\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.error('Error:', error);\n  }\n}</code></pre><h3>When to Use Each?</h3><p>Use Promises when you need to handle multiple async operations simultaneously with <code>Promise.all()</code>. Use async/await when you want cleaner, more readable code for sequential operations.</p>",
+      "author": "Manoj",
+      "date": "2025-10-05",
+      "readTime": "6 min read",
+      "tags": ["javascript", "promises", "async-await", "tutorial"],
+      "category": "Tutorial",
+      "featured": true,
+      "likes": 32,
+      "image": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop",
+      "imageAlt": "JavaScript code with async/await syntax on dark theme editor",
+      "ogImage": "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=1200&h=630&fit=crop"
+    }
+  ]
+}

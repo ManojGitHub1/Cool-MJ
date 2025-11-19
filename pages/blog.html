@@ -35,28 +35,13 @@
       <a href="about.html">About Me</a>
     </nav>
 
-    <main class="post-list" data-aos="fade-up" data-aos-delay="200">
-      
-      <!-- Entry for your first blog post -->
-      <a href="posts/post1.html" class="post-card">
-        <div class="card-content">
-          <h2>My Journey into Web Development</h2>
-          <p class="post-meta">August 31, 2025</p>
-          <p class="post-excerpt">From my first "Hello, World!" to building complex applications, this is the story of how I found my passion in the ever-evolving world of web development.</p>
-          <span class="read-more">Read More →</span>
-        </div>
-      </a>
-
-      <!-- Placeholder for a future post -->
-      <a href="#" class="post-card disabled-link">
-        <div class="card-content">
-          <h2>Why Clean Code Matters (And How to Write It)</h2>
-          <p class="post-meta">Coming Soon</p>
-          <p class="post-excerpt">A deep dive into the principles of writing code that is not just functional, but also readable, maintainable, and a joy to work with.</p>
-          <span class="read-more">Read More →</span>
-        </div>
-      </a>
-      
+    <!-- Container for dynamically rendered blog posts -->
+    <main id="blog-posts-container" class="post-list" data-aos="fade-up" data-aos-delay="200">
+      <!-- Blog posts will be dynamically loaded here -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading blog posts...</p>
+      </div>
     </main>
     
     <!-- Using dev-footer for consistent footer styles -->
@@ -83,5 +68,51 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="../js/pages.js"></script>
   <script src="../js/music.js"></script>
+  <script src="../js/blog-renderer.js"></script>
+  
+  <!-- Blog Initialization Script -->
+  <script>
+    // Initialize blog when DOM is ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      const blogManager = new BlogManager('../blog-posts.json');
+      
+      // Check if we're viewing a single post or the list
+      const urlParams = new URLSearchParams(window.location.search);
+      const postSlug = urlParams.get('post');
+      
+      try {
+        // Show loading state
+        blogManager.showLoading('blog-posts-container');
+        
+        // Load posts from JSON
+        await blogManager.loadPosts();
+        
+        if (postSlug) {
+          // Render single post view
+          const postFound = blogManager.renderSinglePost(postSlug, 'blog-posts-container');
+          
+          // Update page title if post found
+          if (postFound) {
+            const post = blogManager.getPostBySlug(postSlug);
+            if (post) {
+              document.title = `${post.title} | Manoj`;
+            }
+          }
+        } else {
+          // Render blog list view
+          blogManager.renderBlogList('blog-posts-container');
+        }
+        
+        // Reinitialize AOS for dynamically added content
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+        
+      } catch (error) {
+        console.error('Failed to load blog posts:', error);
+        blogManager.showError('blog-posts-container');
+      }
+    });
+  </script>
 </body>
 </html>
