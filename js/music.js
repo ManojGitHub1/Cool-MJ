@@ -2,6 +2,8 @@
 // GLOBAL MUSIC PLAYER - Persistent Across Pages
 // ============================================================================
 
+import { error as logError, info } from './utils/logger.js';
+
 /**
  * MusicPlayerState - Manages persistent state across page navigation
  * Stores: song index, playback position, volume, playing status, widget state
@@ -21,8 +23,8 @@ class MusicPlayerState {
                 ...state,
                 timestamp: Date.now()
             }));
-        } catch (error) {
-            console.error('Failed to save music state:', error);
+        } catch (err) {
+            logError('Failed to save music state:', err);
         }
     }
 
@@ -44,8 +46,8 @@ class MusicPlayerState {
             }
             
             return state;
-        } catch (error) {
-            console.error('Failed to load music state:', error);
+        } catch (err) {
+            logError('Failed to load music state:', err);
             return null;
         }
     }
@@ -56,8 +58,8 @@ class MusicPlayerState {
     clear() {
         try {
             localStorage.removeItem(this.storageKey);
-        } catch (error) {
-            console.error('Failed to clear music state:', error);
+        } catch (err) {
+            logError('Failed to clear music state:', err);
         }
     }
 
@@ -188,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         widget.classList.add('playing');
         playPauseBtnCollapsed.innerHTML = `<i class='bx bx-pause'></i>`;
         playPauseBtnExpanded.innerHTML = `<i class='bx bx-pause'></i>`;
-        audioPlayer.play().catch(error => console.error("Audio Playback Error:", error));
+        audioPlayer.play().catch(err => logError("Audio Playback Error:", err));
     }
 
     function pauseSong() {
@@ -401,5 +403,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     renderPlaylist();
     
-    console.log('🎵 Global Music Player initialized with state persistence');
+    info('🎵 Global Music Player initialized with state persistence');
 });

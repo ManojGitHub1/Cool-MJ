@@ -1,7 +1,25 @@
+/**
+ * @file Subpages Script - Theme toggle and AOS initialization for all subpages
+ * @description Handles theme switching and scroll animations for developer, projects, about, and blog pages
+ * @author Manoj Jivanagi
+ * @version 2.0.0
+ * @license MIT
+ */
+
+import { ThemeManager } from './core/theme-manager.js';
+import { ANIMATION } from './config/constants.js';
+
 document.addEventListener("DOMContentLoaded", function() {
-  // Initialize Animate On Scroll (AOS) library for scroll animations
+  // =================================================================
+  // ANIMATE ON SCROLL (AOS) INITIALIZATION
+  // =================================================================
+  
+  /**
+   * Initialize AOS library for scroll animations
+   * @see {@link https://michalsnik.github.io/aos/}
+   */
   AOS.init({
-      duration: 800,
+      duration: ANIMATION.AOS_DURATION,
       easing: 'ease-in-out',
       once: true,
       mirror: false
@@ -10,36 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
   // =================================================================
   // THEME TOGGLE FUNCTIONALITY (FOR ALL SUB-PAGES)
   // =================================================================
-  const themeToggle = document.getElementById('themeToggle');
-  const body = document.body;
-
-  /**
-   * Applies the theme and updates the UI accordingly.
-   * @param {string} theme - The theme to apply, either 'neon' or 'light'.
-   */
-  const applyTheme = (theme) => {
-      if (theme === 'neon') {
-          body.classList.remove('light-mode');
-          themeToggle.setAttribute('aria-pressed', 'true');
-      } else { // Default to light mode
-          body.classList.add('light-mode');
-          themeToggle.setAttribute('aria-pressed', 'false');
-      }
-  };
   
-  // --- Theme Initialization on Page Load ---
-  const savedTheme = localStorage.getItem('siteTheme');
-  if (savedTheme) {
-      applyTheme(savedTheme);
-  } else {
-      applyTheme('light');
-  }
-
-  // --- Theme Toggle Event Listener ---
-  themeToggle.addEventListener('click', () => {
-      const isLightMode = body.classList.contains('light-mode');
-      const newTheme = isLightMode ? 'neon' : 'light';
-      applyTheme(newTheme);
-      localStorage.setItem('siteTheme', newTheme);
-  });
+  // Initialize theme manager with centralized theme logic
+  const themeManager = new ThemeManager();
+  themeManager.init();
 });

@@ -6,6 +6,8 @@
  * @version 1.0.0
  */
 
+import { error as logError } from './utils/logger.js';
+
 /**
  * LikeManager Class
  * Manages blog post likes using localStorage
@@ -38,8 +40,8 @@ class LikeManager {
     try {
       const liked = localStorage.getItem(`${this.storagePrefix}${postId}`);
       return liked === 'true';
-    } catch (error) {
-      console.error('LikeManager: Error reading localStorage', error);
+    } catch (err) {
+      logError('LikeManager: Error reading localStorage', err);
       return false;
     }
   }
@@ -65,8 +67,8 @@ class LikeManager {
         liked: newLikedState,
         count: newCount
       };
-    } catch (error) {
-      console.error('LikeManager: Error toggling like', error);
+    } catch (err) {
+      logError('LikeManager: Error toggling like', err);
       return {
         liked: this.hasUserLiked(postId),
         count: this.getLikeCount(postId, baseLikes)
@@ -87,8 +89,8 @@ class LikeManager {
         }
       }
       keysToRemove.forEach(key => localStorage.removeItem(key));
-    } catch (error) {
-      console.error('LikeManager: Error clearing likes', error);
+    } catch (err) {
+      logError('LikeManager: Error clearing likes', err);
     }
   }
 }
@@ -135,11 +137,11 @@ class BlogManager {
       this.posts = data.posts;
       this.isLoading = false;
       return this.posts;
-    } catch (error) {
+    } catch (err) {
       this.isLoading = false;
-      this.error = error.message;
-      console.error('BlogManager: Error loading posts', error);
-      throw error;
+      this.error = err.message;
+      logError('BlogManager: Error loading posts', err);
+      throw err;
     }
   }
 
@@ -152,7 +154,7 @@ class BlogManager {
     const container = document.getElementById(containerId);
     
     if (!container) {
-      console.error(`BlogManager: Container #${containerId} not found`);
+      logError(`BlogManager: Container #${containerId} not found`);
       return;
     }
 
@@ -291,7 +293,7 @@ class BlogManager {
     const container = document.getElementById(containerId);
     
     if (!container) {
-      console.error(`BlogManager: Container #${containerId} not found`);
+      logError(`BlogManager: Container #${containerId} not found`);
       return false;
     }
 
@@ -529,6 +531,4 @@ class BlogManager {
 }
 
 // Export for use in other files
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = BlogManager;
-}
+export { BlogManager, LikeManager };
