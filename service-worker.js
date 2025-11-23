@@ -1,10 +1,10 @@
 /**
  * Service Worker for Cool-MJ Portfolio
  * Provides offline caching and PWA functionality
- * @version 1.0.3
+ * @version 1.0.4
  */
 
-const CACHE_NAME = 'cool-mj-v1.0.3';
+const CACHE_NAME = 'cool-mj-v1.0.4';
 
 // Detect if running locally or on GitHub Pages
 const isLocal = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
@@ -99,7 +99,27 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip cross-origin requests
+  // Cache Google Fonts (cross-origin)
+  if (url.origin === 'https://fonts.googleapis.com' || url.origin === 'https://fonts.gstatic.com') {
+    event.respondWith(
+      caches.match(request).then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        return fetch(request).then((response) => {
+          // Cache the font files
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseClone);
+          });
+          return response;
+        });
+      })
+    );
+    return;
+  }
+
+  // Skip other cross-origin requests
   if (url.origin !== location.origin) {
     return;
   }
