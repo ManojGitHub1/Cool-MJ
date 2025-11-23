@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Manoj Portfolio</title>
+  <link rel="icon" href="/Cool-MJ/images/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .error-container {
+      max-width: 600px;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00d9ff, #7b2cbf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 20px;
+      animation: glitch 3s ease-in-out infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% {
+        text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+      }
+      50% {
+        text-shadow: 0 0 20px rgba(123, 44, 191, 0.8);
+      }
+    }
+
+    .error-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #00d9ff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00d9ff, #7b2cbf);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .suggestions {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .suggestions h2 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #00d9ff;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: #b0b0b0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .links a:hover {
+      color: #00d9ff;
+    }
+
+    .links a::before {
+      content: "→ ";
+      color: #00d9ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="error-icon">🔍</div>
+    <div class="error-code">404</div>
+    <h1>Page Not Found</h1>
+    <p>
+      Oops! The page you're looking for doesn't exist or has been moved. 
+      Don't worry, let's get you back on track.
+    </p>
+    
+    <div class="buttons">
+      <a href="/Cool-MJ/" class="btn btn-primary">Go Home</a>
+      <button onclick="window.history.back()" class="btn btn-secondary">Go Back</button>
+    </div>
+
+    <div class="suggestions">
+      <h2>Popular Pages</h2>
+      <div class="links">
+        <a href="/Cool-MJ/">Home</a>
+        <a href="/Cool-MJ/pages/developer.html">Developer</a>
+        <a href="/Cool-MJ/pages/projects.html">Projects</a>
+        <a href="/Cool-MJ/pages/about.html">About</a>
+        <a href="/Cool-MJ/pages/blog.html">Blog</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Log 404 to Google Analytics if available
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'page_not_found', {
+        event_category: '404 Error',
+        event_label: window.location.pathname
+      });
+    }
+  </script>
+</body>
+</html>
