@@ -183,25 +183,36 @@
               <input type="text" id="name" name="name" required placeholder=" " />
               <label for="name">Your Name</label>
               <i class="bx bxs-user form-icon"></i>
+              <span class="error-message" id="name-error"></span>
             </div>
             <!-- Email Field -->
             <div class="form-group">
               <input type="email" id="email" name="email" required placeholder=" " />
               <label for="email">Your Email</label>
               <i class="bx bxs-envelope form-icon"></i>
+              <span class="error-message" id="email-error"></span>
             </div>
           </div>
           <!-- Message Field -->
           <div class="form-group">
             <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
             <label for="message">Your Message</label>
+            <span class="error-message" id="message-error"></span>
           </div>
+
+          <!-- Honeypot Field (hidden from humans, bots will fill it) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
           <!-- Status Message Div -->
           <div id="form-status"></div>
 
           <button type="submit" class="btn" id="submitBtn">
-            Send Message
+            <span class="btn-text">Send Message</span>
+            <span class="btn-spinner" style="display: none;">
+              <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+              </svg>
+            </span>
           </button>
         </form>
       </div>

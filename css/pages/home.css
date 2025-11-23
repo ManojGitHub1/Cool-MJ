@@ -412,13 +412,84 @@ a:hover {
   color: #11999e;
 }
 
+/* Error Message Styles */
+.error-message {
+  display: none;
+  color: #ff5252;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 600;
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ff5252;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Button with Spinner */
 .contact-form .btn {
   width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .contact-form .btn:disabled {
   cursor: not-allowed;
   background: #a1b0af;
+  transform: none;
+}
+
+.btn-spinner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  animation: rotate 2s linear infinite;
+}
+
+.spinner .path {
+  stroke: #ffffff;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
 }
 
 /* Form Status Messages */
@@ -775,10 +846,25 @@ body:not(.light-mode) .form-group textarea:focus {
   box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
 }
 
+body:not(.light-mode) .form-group.error input,
+body:not(.light-mode) .form-group.error textarea {
+  border-color: #ff5252;
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.3);
+}
+
+body:not(.light-mode) .error-message {
+  color: #ff5252;
+  text-shadow: 0 0 10px rgba(255, 82, 82, 0.5);
+}
+
 body:not(.light-mode) .contact-form .btn:disabled {
   background: linear-gradient(45deg, #2c3e50, #34495e);
   color: #8892b0;
   box-shadow: none;
+}
+
+body:not(.light-mode) .spinner .path {
+  stroke: #0a0e27;
 }
 
 body:not(.light-mode) #form-status.success {

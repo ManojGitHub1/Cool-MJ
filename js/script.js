@@ -51,27 +51,109 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /**
-   * Validates form fields before submission
-   * @returns {Object} Validation result { valid: boolean, message: string }
+   * Clear error state from a form field
+   * @param {HTMLElement} field - Input or textarea element
+   */
+  function clearError(field) {
+    const formGroup = field.closest('.form-group');
+    if (formGroup) {
+      formGroup.classList.remove('error');
+      const errorSpan = formGroup.querySelector('.error-message');
+      if (errorSpan) errorSpan.textContent = '';
+    }
+  }
+
+  /**
+   * Show error state on a form field
+   * @param {HTMLElement} field - Input or textarea element
+   * @param {string} message - Error message to display
+   */
+  function showError(field, message) {
+    const formGroup = field.closest('.form-group');
+    if (formGroup) {
+      formGroup.classList.add('error');
+      const errorSpan = formGroup.querySelector('.error-message');
+      if (errorSpan) errorSpan.textContent = message;
+    }
+  }
+
+  /**
+   * Validates form fields before submission with inline errors
+   * @returns {boolean} True if form is valid
    */
   function validateContactForm() {
     const nameInput = form.querySelector('input[name="name"]');
     const emailInput = form.querySelector('input[name="email"]');
     const messageInput = form.querySelector('textarea[name="message"]');
+    const honeypot = form.querySelector('input[name="_gotcha"]');
+    
+    let isValid = true;
 
+    // Clear all previous errors
+    [nameInput, emailInput, messageInput].forEach(clearError);
+
+    // Check honeypot (if filled, it's spam)
+    if (honeypot?.value) {
+      return false; // Silently reject spam
+    }
+
+    // Validate name
     if (!isNotEmpty(nameInput?.value)) {
-      return { valid: false, message: 'Please enter your name.' };
+      showError(nameInput, 'Name is required');
+      isValid = false;
     }
 
-    if (!isValidEmail(emailInput?.value)) {
-      return { valid: false, message: 'Please enter a valid email address.' };
+    // Validate email
+    if (!isNotEmpty(emailInput?.value)) {
+      showError(emailInput, 'Email is required');
+      isValid = false;
+    } else if (!isValidEmail(emailInput?.value)) {
+      showError(emailInput, 'Invalid email format (e.g., user@example.com)');
+      isValid = false;
     }
 
+    // Validate message
     if (!isNotEmpty(messageInput?.value)) {
-      return { valid: false, message: 'Please enter a message.' };
+      showError(messageInput, 'Message is required');
+      isValid = false;
+    } else if (messageInput.value.trim().length < 10) {
+      showError(messageInput, 'Message must be at least 10 characters');
+      isValid = false;
     }
 
-    return { valid: true, message: '' };
+    return isValid;
+  }
+
+  // Add real-time validation on blur
+  if (form) {
+    const nameInput = form.querySelector('input[name="name"]');
+    const emailInput = form.querySelector('input[name="email"]');
+    const messageInput = form.querySelector('textarea[name="message"]');
+
+    nameInput?.addEventListener('blur', () => {
+      clearError(nameInput);
+      if (!isNotEmpty(nameInput.value)) {
+        showError(nameInput, 'Name is required');
+      }
+    });
+
+    emailInput?.addEventListener('blur', () => {
+      clearError(emailInput);
+      if (!isNotEmpty(emailInput.value)) {
+        showError(emailInput, 'Email is required');
+      } else if (!isValidEmail(emailInput.value)) {
+        showError(emailInput, 'Invalid email format (e.g., user@example.com)');
+      }
+    });
+
+    messageInput?.addEventListener('blur', () => {
+      clearError(messageInput);
+      if (!isNotEmpty(messageInput.value)) {
+        showError(messageInput, 'Message is required');
+      } else if (messageInput.value.trim().length < 10) {
+        showError(messageInput, 'Message must be at least 10 characters');
+      }
+    });
   }
 
   /**
@@ -85,19 +167,23 @@ document.addEventListener("DOMContentLoaded", function () {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    // Clear status message
+    statusDiv.innerHTML = '';
+    statusDiv.className = '';
+
     // Validate form before submission
-    const validation = validateContactForm();
-    if (!validation.valid) {
-      statusDiv.innerHTML = validation.message;
-      statusDiv.className = "error";
+    if (!validateContactForm()) {
       return;
     }
 
     const data = new FormData(event.target);
 
-    // Update UI to show loading state
+    // Update UI to show loading state with spinner
     submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnSpinner = submitBtn.querySelector('.btn-spinner');
+    if (btnText) btnText.style.display = 'none';
+    if (btnSpinner) btnSpinner.style.display = 'inline-flex';
 
     try {
       // Send form data to Formspree endpoint
@@ -115,7 +201,11 @@ document.addEventListener("DOMContentLoaded", function () {
         statusDiv.className = "success";
         form.reset();
         Array.from(form.elements).forEach(field => field.disabled = true);
-        submitBtn.textContent = "Message Sent!";
+        
+        // Update button to show success
+        if (btnText) btnText.textContent = "Message Sent!";
+        if (btnSpinner) btnSpinner.style.display = 'none';
+        if (btnText) btnText.style.display = 'inline';
         
         // Track successful form submission
         if (typeof gtag !== 'undefined') {
@@ -130,6 +220,11 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // Handle server-side validation errors
         console.error('[Form] Submission failed with status:', response.status);
+        
+        // Reset button state
+        submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline';
+        if (btnSpinner) btnSpinner.style.display = 'none';
         
         if (response.status === 404) {
           statusDiv.innerHTML = "Form endpoint not found. Please verify your Formspree form ID.";
@@ -146,8 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
         statusDiv.className = "error";
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Message";
       }
     } catch (error) {
       // Handle network errors
@@ -155,7 +248,8 @@ document.addEventListener("DOMContentLoaded", function () {
       statusDiv.innerHTML = MESSAGES.NETWORK_ERROR;
       statusDiv.className = "error";
       submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message";
+      if (btnText) btnText.style.display = 'inline';
+      if (btnSpinner) btnSpinner.style.display = 'none';
     }
   }
   
