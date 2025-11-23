@@ -42,6 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = getElement(`#${ELEMENTS.CONTACT_FORM}`);
   const statusDiv = getElement("#form-status");
   const submitBtn = getElement("#submitBtn");
+  
+  // Debug: Check if form elements are found
+  if (!form) {
+    console.error(`[Form] Contact form not found. Looking for ID: ${ELEMENTS.CONTACT_FORM}`);
+  } else {
+    console.log('[Form] Contact form found successfully');
+  }
 
   /**
    * Validates form fields before submission
@@ -109,13 +116,34 @@ document.addEventListener("DOMContentLoaded", function () {
         form.reset();
         Array.from(form.elements).forEach(field => field.disabled = true);
         submitBtn.textContent = "Message Sent!";
+        
+        // Track successful form submission
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', {
+            event_category: 'Contact Form',
+            event_label: 'success'
+          });
+          console.log('[Analytics] Form submission tracked');
+        } else {
+          console.warn('[Analytics] Google Analytics not loaded');
+        }
       } else {
         // Handle server-side validation errors
-        const responseData = await response.json();
-        if (Object.hasOwn(responseData, "errors")) {
-          statusDiv.innerHTML = responseData["errors"].map((error) => error["message"]).join(", ");
+        console.error('[Form] Submission failed with status:', response.status);
+        
+        if (response.status === 404) {
+          statusDiv.innerHTML = "Form endpoint not found. Please verify your Formspree form ID.";
         } else {
-          statusDiv.innerHTML = MESSAGES.FORM_ERROR;
+          try {
+            const responseData = await response.json();
+            if (Object.hasOwn(responseData, "errors")) {
+              statusDiv.innerHTML = responseData["errors"].map((error) => error["message"]).join(", ");
+            } else {
+              statusDiv.innerHTML = MESSAGES.FORM_ERROR;
+            }
+          } catch (e) {
+            statusDiv.innerHTML = MESSAGES.FORM_ERROR;
+          }
         }
         statusDiv.className = "error";
         submitBtn.disabled = false;
@@ -134,5 +162,40 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach submit event listener to form (if form exists on page)
   if (form) {
     form.addEventListener("submit", handleSubmit);
+  }
+
+  // =================================================================
+  // SERVICE WORKER REGISTRATION (PWA)
+  // =================================================================
+  
+  /**
+   * Register service worker for PWA functionality
+   * Provides offline caching and app-like experience
+   */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Use relative path for local development and absolute for production
+      const swPath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? './service-worker.js'
+        : '/Cool-MJ/service-worker.js';
+      
+      navigator.serviceWorker.register(swPath)
+        .then((registration) => {
+          console.log('[PWA] Service Worker registered successfully:', registration.scope);
+          
+          // Check for updates
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                console.log('[PWA] New version available! Refresh to update.');
+              }
+            });
+          });
+        })
+        .catch((error) => {
+          console.error('[PWA] Service Worker registration failed:', error);
+        });
+    });
   }
 });

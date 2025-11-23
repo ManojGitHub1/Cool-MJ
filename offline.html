@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Manoj Portfolio</title>
+  <link rel="icon" href="images/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .offline-container {
+      max-width: 500px;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .offline-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #00d9ff, #7b2cbf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .retry-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #00d9ff, #7b2cbf);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .retry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 217, 255, 0.3);
+    }
+
+    .offline-features {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .offline-features h2 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #00d9ff;
+    }
+
+    .features-list {
+      list-style: none;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .features-list li {
+      margin: 10px 0;
+      color: #b0b0b0;
+      font-size: 0.95rem;
+    }
+
+    .features-list li::before {
+      content: "✓ ";
+      color: #00d9ff;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">📡</div>
+    <h1>You're Offline</h1>
+    <p>
+      Oops! It looks like you've lost your internet connection. 
+      Don't worry, some pages may still be available from your cache.
+    </p>
+    <button class="retry-btn" onclick="window.location.reload()">
+      Try Again
+    </button>
+
+    <div class="offline-features">
+      <h2>While You're Offline</h2>
+      <ul class="features-list">
+        <li>Previously viewed pages are cached</li>
+        <li>Your theme preference is saved</li>
+        <li>Music player state is preserved</li>
+        <li>Liked blog posts are remembered</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Automatically retry when connection is restored
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>

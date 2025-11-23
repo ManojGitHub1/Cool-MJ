@@ -1,0 +1,27 @@
+{
+  "name": "Manoj Jivanagi - Developer & AI Engineer",
+  "short_name": "Manoj Portfolio",
+  "description": "The portfolio of Manoj Jivanagi, a Software Developer, AI Enthusiast, and Creative Thinker.",
+  "start_url": "/Cool-MJ/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00d9ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/Manoj.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/Manoj.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

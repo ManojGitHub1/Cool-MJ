@@ -18,17 +18,20 @@ export class ThemeManager {
    * @param {string} [options.storageKey='siteTheme'] - localStorage key for theme
    * @param {string} [options.defaultTheme='light'] - Default theme if none saved
    * @param {string} [options.toggleButtonId='themeToggle'] - Theme toggle button ID
+   * @param {boolean} [options.respectSystemPreference=true] - Use system theme preference
    */
   constructor(options = {}) {
     this.storageKey = options.storageKey || 'siteTheme';
     this.defaultTheme = options.defaultTheme || 'light';
     this.toggleButtonId = options.toggleButtonId || 'themeToggle';
+    this.respectSystemPreference = options.respectSystemPreference !== false;
     
     this.themeToggle = document.getElementById(this.toggleButtonId);
     this.body = document.body;
     
     // Bind methods to preserve context
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleSystemThemeChange = this.handleSystemThemeChange.bind(this);
   }
 
   /**
@@ -36,13 +39,49 @@ export class ThemeManager {
    * Loads saved theme and sets up event listeners
    */
   init() {
-    // Load and apply saved theme
-    const savedTheme = this.getSavedTheme();
-    this.applyTheme(savedTheme);
+    // Check for saved theme first, then system preference
+    let themeToApply = this.getSavedTheme();
+    
+    // If no saved theme and system preference enabled, use system theme
+    if (!localStorage.getItem(this.storageKey) && this.respectSystemPreference) {
+      themeToApply = this.getSystemTheme();
+    }
+    
+    this.applyTheme(themeToApply);
     
     // Setup toggle button event listener
     if (this.themeToggle) {
       this.themeToggle.addEventListener('click', this.handleToggle);
+    }
+    
+    // Listen for system theme changes
+    if (this.respectSystemPreference && window.matchMedia) {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      darkModeQuery.addEventListener('change', this.handleSystemThemeChange);
+    }
+  }
+
+  /**
+   * Gets the system's preferred theme
+   * @returns {string} 'neon' if dark mode, 'light' otherwise
+   */
+  getSystemTheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'neon';
+    }
+    return 'light';
+  }
+
+  /**
+   * Handles system theme preference changes
+   * Only applies if no user preference is saved
+   * @param {MediaQueryListEvent} e - Media query change event
+   */
+  handleSystemThemeChange(e) {
+    // Only auto-switch if user hasn't set a preference
+    if (!localStorage.getItem(this.storageKey)) {
+      const newTheme = e.matches ? 'neon' : 'light';
+      this.applyTheme(newTheme);
     }
   }
 
@@ -76,19 +115,24 @@ export class ThemeManager {
 
   /**
    * Applies the specified theme to the page
-   * Updates body class and ARIA attributes
+   * Updates body class and ARIA attributes with smooth transition
    * @param {('light'|'neon')} theme - Theme to apply
    */
   applyTheme(theme) {
+    // Add transition class for smooth color changes
+    this.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+    
     if (theme === 'neon') {
       this.body.classList.remove('light-mode');
       if (this.themeToggle) {
         this.themeToggle.setAttribute('aria-pressed', 'true');
+        this.themeToggle.setAttribute('aria-label', 'Switch to light mode');
       }
     } else {
       this.body.classList.add('light-mode');
       if (this.themeToggle) {
         this.themeToggle.setAttribute('aria-pressed', 'false');
+        this.themeToggle.setAttribute('aria-label', 'Switch to dark mode');
       }
     }
   }
@@ -109,6 +153,14 @@ export class ThemeManager {
     const newTheme = currentTheme === 'light' ? 'neon' : 'light';
     this.applyTheme(newTheme);
     this.saveTheme(newTheme);
+    
+    // Track theme change in Google Analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'theme_change', {
+        event_category: 'Theme',
+        event_label: newTheme
+      });
+    }
   }
 
   /**

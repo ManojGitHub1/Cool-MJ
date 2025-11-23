@@ -19,11 +19,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.35s;
+  transition: all 0.35s ease, transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .theme-toggle-button:hover {
   transform: scale(1.08) rotate(12deg);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.theme-toggle-button:active {
+  transform: scale(0.95);
 }
 
 /* ===== Theme Icons ===== */
