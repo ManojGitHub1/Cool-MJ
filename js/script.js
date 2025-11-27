@@ -14,6 +14,47 @@ import { API, ANIMATION, MESSAGES, ELEMENTS } from './config/constants.js';
 
 document.addEventListener("DOMContentLoaded", function () {
   // =================================================================
+  // ENHANCED PAGE VIEW TRACKING
+  // =================================================================
+  
+  /**
+   * Track enhanced page views with metadata
+   */
+  function trackEnhancedPageView() {
+    const pageData = {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      page_referrer: document.referrer,
+      user_agent: navigator.userAgent,
+      screen_resolution: `${screen.width}x${screen.height}`,
+      viewport_size: `${window.innerWidth}x${window.innerHeight}`
+    };
+    
+    // Determine page category
+    const path = window.location.pathname;
+    if (path.includes('blog')) pageData.page_category = 'blog';
+    else if (path.includes('developer')) pageData.page_category = 'skills';
+    else if (path.includes('projects')) pageData.page_category = 'portfolio';
+    else if (path.includes('about')) pageData.page_category = 'about';
+    else pageData.page_category = 'home';
+    
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_view', pageData);
+      
+      // Also set as user property for segmentation
+      gtag('set', 'user_properties', {
+        preferred_theme: document.body.classList.contains('light-mode') ? 'light' : 'dark'
+      });
+      
+      console.log('[Analytics] Enhanced page view tracked:', pageData);
+    }
+  }
+  
+  // Track page view
+  trackEnhancedPageView();
+  
+  // =================================================================
   // ANIMATE ON SCROLL (AOS) INITIALIZATION
   // =================================================================
   
@@ -48,6 +89,106 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error(`[Form] Contact form not found. Looking for ID: ${ELEMENTS.CONTACT_FORM}`);
   } else {
     console.log('[Form] Contact form found successfully');
+  }
+
+  // =================================================================
+  // FORM FUNNEL TRACKING
+  // =================================================================
+  
+  /**
+   * Enhanced Form Tracking for GA4
+   */
+  class FormTracker {
+    constructor(formElement) {
+      this.form = formElement;
+      if (!this.form) return;
+      
+      this.formStarted = false;
+      this.fieldsCompleted = new Set();
+      this.init();
+    }
+
+    init() {
+      // Track form start (first field focus)
+      const fields = this.form.querySelectorAll('input, textarea');
+      fields.forEach(field => {
+        // Skip honeypot field
+        if (field.name === '_gotcha') return;
+        
+        field.addEventListener('focus', () => {
+          if (!this.formStarted) {
+            this.trackFormStart();
+            this.formStarted = true;
+          }
+        }, { once: true });
+
+        // Track field completion
+        field.addEventListener('blur', () => {
+          if (field.value.trim() && !this.fieldsCompleted.has(field.name)) {
+            this.trackFieldComplete(field.name);
+            this.fieldsCompleted.add(field.name);
+          }
+        });
+
+        // Track field errors
+        field.addEventListener('invalid', () => {
+          this.trackFieldError(field.name, field.validationMessage);
+        });
+      });
+
+      // Track form submission
+      this.form.addEventListener('submit', () => {
+        this.trackFormSubmit();
+      });
+    }
+
+    trackFormStart() {
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_start', {
+          form_name: 'contact',
+          page_path: window.location.pathname
+        });
+        console.log('[Analytics] Form start tracked');
+      }
+    }
+
+    trackFieldComplete(fieldName) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_field_complete', {
+          form_name: 'contact',
+          field_name: fieldName,
+          fields_completed: this.fieldsCompleted.size + 1
+        });
+        console.log(`[Analytics] Field complete tracked: ${fieldName}`);
+      }
+    }
+
+    trackFieldError(fieldName, errorMessage) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_error', {
+          form_name: 'contact',
+          field_name: fieldName,
+          error_message: errorMessage
+        });
+        console.log(`[Analytics] Field error tracked: ${fieldName}`);
+      }
+    }
+
+    trackFormSubmit() {
+      if (typeof gtag === 'function') {
+        gtag('event', 'form_submit', {
+          form_name: 'contact',
+          fields_completed: this.fieldsCompleted.size,
+          conversion: true
+        });
+        console.log('[Analytics] Form submit tracked');
+      }
+    }
+  }
+
+  // Initialize form tracker
+  if (form) {
+    const formTracker = new FormTracker(form);
   }
 
   /**

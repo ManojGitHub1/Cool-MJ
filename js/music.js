@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stateManager = new MusicPlayerState();
     let currentSongIndex = 0;
     let isPlaying = false;
+    let sessionStartTime = Date.now();
+    let currentSongStartTime = null;
     
     // --- 3. CACHE DOM ELEMENTS ---
     const audioPlayer = document.getElementById('audio-player');
@@ -191,14 +193,65 @@ document.addEventListener('DOMContentLoaded', () => {
         playPauseBtnCollapsed.innerHTML = `<i class='bx bx-pause'></i>`;
         playPauseBtnExpanded.innerHTML = `<i class='bx bx-pause'></i>`;
         audioPlayer.play().catch(err => logError("Audio Playback Error:", err));
-    }
-
+        
+        // Track play event
     function pauseSong() {
         isPlaying = false;
         widget.classList.remove('playing');
         playPauseBtnCollapsed.innerHTML = `<i class='bx bx-play'></i>`;
         playPauseBtnExpanded.innerHTML = `<i class='bx bx-play'></i>`;
         audioPlayer.pause();
+        
+        // Track pause event
+        if (typeof gtag === 'function') {
+            const listenDuration = currentSongStartTime ? Math.round((Date.now() - currentSongStartTime) / 1000) : 0;
+            const completionPercent = audioPlayer.duration ? Math.round((audioPlayer.currentTime / audioPlayer.duration) * 100) : 0;
+            
+            gtag('event', 'music_pause', {
+                song_title: SONGS[currentSongIndex].title,
+                listen_duration: listenDuration,
+                completion_percent: completionPercent
+            });
+            console.log('[Analytics] Music pause tracked:', listenDuration, 'seconds');
+        }
+    }           session_time: Math.round((Date.now() - sessionStartTime) / 1000)
+    function togglePlayPause(e) { if(e) e.stopPropagation(); isPlaying ? pauseSong() : playSong(); }
+    
+    function prevSong() {
+        // Track skip event
+        if (typeof gtag === 'function') {
+            const listenDuration = currentSongStartTime ? Math.round((Date.now() - currentSongStartTime) / 1000) : 0;
+            gtag('event', 'music_skip', {
+                song_title: SONGS[currentSongIndex].title,
+                direction: 'previous',
+                listen_duration: listenDuration
+            });
+            console.log('[Analytics] Music skip tracked: previous');
+        }
+        
+        currentSongIndex = (currentSongIndex - 1 + SONGS.length) % SONGS.length;
+        loadSong(SONGS[currentSongIndex]);
+        playSong();
+    }
+    
+    function nextSong() {
+        // Track skip event
+        if (typeof gtag === 'function') {
+            const listenDuration = currentSongStartTime ? Math.round((Date.now() - currentSongStartTime) / 1000) : 0;
+            gtag('event', 'music_skip', {
+                song_title: SONGS[currentSongIndex].title,
+                direction: 'next',
+                listen_duration: listenDuration
+            });
+            console.log('[Analytics] Music skip tracked: next');
+        }
+        
+        currentSongIndex = (currentSongIndex + 1) % SONGS.length;
+        loadSong(SONGS[currentSongIndex]);
+        playSong();
+    }
+    
+    function formatTime(seconds) { const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; }
     }
     
     function togglePlayPause(e) { if(e) e.stopPropagation(); isPlaying ? pauseSong() : playSong(); }
@@ -338,18 +391,48 @@ document.addEventListener('DOMContentLoaded', () => {
     expandBtn.addEventListener('click', () => widget.classList.add('expanded'));
     collapseBtn.addEventListener('click', () => widget.classList.remove('expanded'));
     
-    playlistBtn.addEventListener('click', () => widget.classList.add('playlist-open'));
+    playlistBtn.addEventListener('click', () => {
+        widget.classList.add('playlist-open');
+        
+        // Track playlist view
+        if (typeof gtag === 'function') {
+            gtag('event', 'music_playlist_view', {
+                songs_in_playlist: SONGS.length
+            });
+            console.log('[Analytics] Playlist view tracked');
+        }
+    });
     closePlaylistBtn.addEventListener('click', () => widget.classList.remove('playlist-open'));
 
     audioPlayer.addEventListener('timeupdate', updateProgress);
     audioPlayer.addEventListener('loadedmetadata', () => {
         durationEl.textContent = formatTime(audioPlayer.duration);
     });
-    audioPlayer.addEventListener('ended', nextSong);
+    audioPlayer.addEventListener('ended', () => {
+        // Track song completion
+        if (typeof gtag === 'function') {
+            gtag('event', 'music_complete', {
+                song_title: SONGS[currentSongIndex].title,
+                song_artist: SONGS[currentSongIndex].artist,
+                listen_duration: Math.round(audioPlayer.duration)
+            });
+            console.log('[Analytics] Music complete tracked:', SONGS[currentSongIndex].title);
+        }
+        nextSong();
+    });
     
     progressContainer.addEventListener('click', setProgress);
     
     volumeSlider.addEventListener('input', setVolume);
+    volumeSlider.addEventListener('change', (e) => {
+        // Track volume change
+        if (typeof gtag === 'function') {
+            gtag('event', 'music_volume_change', {
+                volume_level: e.target.value
+            });
+            console.log('[Analytics] Volume change tracked:', e.target.value);
+        }
+    });
 
     // --- 6. STATE PERSISTENCE EVENTS ---
     

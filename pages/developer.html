@@ -12,7 +12,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <!-- Shared styles (variables, layout, components) -->
-  <link rel="stylesheet" href="../css/shared.css?v=1.0.8">
+  <link rel="stylesheet" href="../css/shared.css?v=1.0.9" />
   <!-- Page-specific styles -->
   <link rel="stylesheet" href="../css/pages/developer.css">
   
@@ -213,5 +213,9 @@
     const developerMeta = getMetaConfig('developer');
     metaManager.setPageMeta(developerMeta);
   </script>
+  
+  <!-- Analytics Trackers -->
+  <script type="module" src="../js/analytics/scroll-tracker.js"></script>
+  <script type="module" src="../js/analytics/error-tracker.js"></script>
 </body>
 </html>

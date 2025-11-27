@@ -238,6 +238,95 @@ function showToast(message, type = 'success') {
 }
 
 /**
+ * Track blog reading behavior for Google Analytics
+ */
+class BlogReadingTracker {
+  constructor(postSlug, postTitle) {
+    this.postSlug = postSlug;
+    this.postTitle = postTitle;
+    this.startTime = Date.now();
+    this.maxScroll = 0;
+    this.tracked75 = false;
+    this.tracked100 = false;
+    this.init();
+  }
+
+  init() {
+    // Track reading progress
+    window.addEventListener('scroll', () => this.checkProgress(), { passive: true });
+    
+    // Track time on page when leaving
+    window.addEventListener('beforeunload', () => this.trackExit());
+    
+    // Track initial view
+    if (typeof gtag === 'function') {
+      gtag('event', 'blog_view', {
+        post_title: this.postTitle,
+        post_slug: this.postSlug,
+        page_path: window.location.pathname
+      });
+      console.log('[Analytics] Blog view tracked:', this.postTitle);
+    }
+  }
+
+  checkProgress() {
+    const article = document.querySelector('.single-post__content');
+    if (!article) return;
+
+    const articleHeight = article.offsetHeight;
+    const scrolled = window.scrollY - article.offsetTop + window.innerHeight;
+    const percent = Math.min(100, Math.round((scrolled / articleHeight) * 100));
+
+    this.maxScroll = Math.max(this.maxScroll, percent);
+
+    // Track 75% milestone
+    if (percent >= 75 && !this.tracked75) {
+      this.tracked75 = true;
+      if (typeof gtag === 'function') {
+        gtag('event', 'blog_read_progress', {
+          post_title: this.postTitle,
+          read_percent: 75,
+          time_spent: Math.round((Date.now() - this.startTime) / 1000)
+        });
+        console.log('[Analytics] Blog 75% read tracked');
+      }
+    }
+
+    // Track 100% milestone
+    if (percent >= 100 && !this.tracked100) {
+      this.tracked100 = true;
+      if (typeof gtag === 'function') {
+        gtag('event', 'blog_read_complete', {
+          post_title: this.postTitle,
+          time_spent: Math.round((Date.now() - this.startTime) / 1000),
+          engagement_level: 'high'
+        });
+        console.log('[Analytics] Blog 100% read tracked');
+      }
+    }
+  }
+
+  trackExit() {
+    const timeSpent = Math.round((Date.now() - this.startTime) / 1000);
+    
+    // Determine engagement level
+    let engagementLevel = 'low';
+    if (this.maxScroll >= 75 && timeSpent >= 30) engagementLevel = 'high';
+    else if (this.maxScroll >= 50 || timeSpent >= 15) engagementLevel = 'medium';
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'blog_exit', {
+        post_title: this.postTitle,
+        max_scroll_percent: this.maxScroll,
+        time_spent_seconds: timeSpent,
+        engagement_level: engagementLevel
+      });
+      console.log('[Analytics] Blog exit tracked:', engagementLevel);
+    }
+  }
+}
+
+/**
  * Initialize reading progress bar for single post view
  */
 function initReadingProgress() {
@@ -337,6 +426,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           
           // Initialize reading progress bar for single post
           initReadingProgress();
+          
+          // Initialize blog reading tracker
+          new BlogReadingTracker(post.slug, post.title);
           
           // Initialize share functionality
           initShareFunctionality();
