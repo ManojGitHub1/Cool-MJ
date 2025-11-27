@@ -8,8 +8,8 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <!-- Link to the shared stylesheet -->
-  <link rel="stylesheet" href="../css/shared.css">
-  <link rel="stylesheet" href="../css/pages/blog.css">
+  <link rel="stylesheet" href="../css/shared.css?v=1.0.7">
+  <link rel="stylesheet" href="../css/pages/blog.css?v=1.0.7">
   
   <link rel="icon" href="../images/favicon.ico" />
   <link rel="manifest" href="../manifest.json" />
@@ -45,6 +45,9 @@
 </head>
 <!-- Body starts in light-mode by default -->
 <body class="light-mode">
+  
+  <!-- Reading Progress Bar (only visible on single post view) -->
+  <div class="reading-progress" id="reading-progress"></div>
 
   <!-- Using dev-container for consistent layout -->
   <div class="dev-container">
@@ -61,6 +64,19 @@
       <a href="projects.html">Projects</a>
       <a href="about.html">About Me</a>
     </nav>
+
+    <!-- Search Bar -->
+    <div class="blog-search-container" data-aos="fade-up" data-aos-delay="150">
+      <div class="search-wrapper">
+        <i class='bx bx-search search-icon'></i>
+        <input type="text" id="blog-search" class="blog-search-input" placeholder="Search posts... (Ctrl+K)" autocomplete="off">
+        <span class="search-shortcut">Ctrl+K</span>
+        <button class="search-clear-btn" id="search-clear" title="Clear search" style="display: none;">
+          <i class='bx bx-x'></i>
+        </button>
+      </div>
+      <div class="search-results-count" id="search-results-count" style="display: none;"></div>
+    </div>
 
     <!-- Container for dynamically rendered blog posts -->
     <main id="blog-posts-container" class="post-list" data-aos="fade-up" data-aos-delay="200">
@@ -93,10 +109,10 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="../js/meta-manager.js"></script>
-  <script src="../js/config/meta-config.js"></script>
-  <script type="module" src="../js/pages.js"></script>
-  <script type="module" src="../js/music.js"></script>
-  <script type="module" src="../js/blog-init.js"></script>
+  <script src="../js/meta-manager.js?v=1.0.7"></script>
+  <script src="../js/config/meta-config.js?v=1.0.7"></script>
+  <script type="module" src="../js/pages.js?v=1.0.7"></script>
+  <script type="module" src="../js/music.js?v=1.0.7"></script>
+  <script type="module" src="../js/blog-init.js?v=1.0.7"></script>
 </body>
 </html>

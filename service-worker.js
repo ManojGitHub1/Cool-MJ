@@ -1,10 +1,10 @@
 /**
  * Service Worker for Cool-MJ Portfolio
  * Provides offline caching and PWA functionality
- * @version 1.0.5
+ * @version 1.0.7
  */
 
-const CACHE_NAME = 'cool-mj-v1.0.5';
+const CACHE_NAME = 'cool-mj-v1.0.7';
 
 // Detect if running locally or on GitHub Pages
 const isLocal = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
@@ -19,6 +19,7 @@ const STATIC_ASSETS = [
   '/pages/projects.html',
   '/pages/about.html',
   '/pages/blog.html',
+  '/blog-posts.json',
   // CSS - shared and imported files
   '/css/shared.css',
   '/css/base/variables.css',

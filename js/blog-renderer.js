@@ -377,6 +377,13 @@ class BlogManager {
           ${post.content}
         </div>
         
+        <div class="share-section" data-aos="fade-up">
+          <button class="share-post-btn" id="share-post-btn" data-url="${window.location.href}" data-title="${post.title}">
+            <i class='bx bx-share-alt'></i>
+            Share this post
+          </button>
+        </div>
+        
         <footer class="post-footer" data-aos="fade-up">
           <div class="post-navigation" id="post-navigation"></div>
         </footer>
