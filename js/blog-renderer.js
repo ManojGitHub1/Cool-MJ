@@ -1,12 +1,6 @@
 /**
- * Blog Renderer Module
- * Handles dynamic loading and rendering of blog posts from JSON data
- * 
- * @author Manoj
- * @version 1.0.0
+ * Blog Renderer - Simplified
  */
-
-import { error as logError } from './utils/logger.js';
 
 /**
  * LikeManager Class
@@ -41,7 +35,7 @@ class LikeManager {
       const liked = localStorage.getItem(`${this.storagePrefix}${postId}`);
       return liked === 'true';
     } catch (err) {
-      logError('LikeManager: Error reading localStorage', err);
+      console.error('LikeManager error:', err);
       return false;
     }
   }
@@ -68,7 +62,7 @@ class LikeManager {
         count: newCount
       };
     } catch (err) {
-      logError('LikeManager: Error toggling like', err);
+      console.error('LikeManager error:', err);
       return {
         liked: this.hasUserLiked(postId),
         count: this.getLikeCount(postId, baseLikes)
@@ -90,7 +84,7 @@ class LikeManager {
       }
       keysToRemove.forEach(key => localStorage.removeItem(key));
     } catch (err) {
-      logError('LikeManager: Error clearing likes', err);
+      console.error('LikeManager error:', err);
     }
   }
 }
@@ -140,7 +134,7 @@ class BlogManager {
     } catch (err) {
       this.isLoading = false;
       this.error = err.message;
-      logError('BlogManager: Error loading posts', err);
+      console.error('BlogManager error:', err);
       throw err;
     }
   }
@@ -154,7 +148,7 @@ class BlogManager {
     const container = document.getElementById(containerId);
     
     if (!container) {
-      logError(`BlogManager: Container #${containerId} not found`);
+      console.error(`Container not found: ${containerId}`);
       return;
     }
 
@@ -293,7 +287,7 @@ class BlogManager {
     const container = document.getElementById(containerId);
     
     if (!container) {
-      logError(`BlogManager: Container #${containerId} not found`);
+      console.error(`Container not found: ${containerId}`);
       return false;
     }
 

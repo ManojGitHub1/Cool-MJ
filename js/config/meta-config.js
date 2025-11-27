@@ -320,4 +320,11 @@ if (typeof module !== 'undefined' && module.exports) {
     getBlogPostOpenGraph,
     getBlogPostTwitterCard
   };
+} else if (typeof window !== 'undefined') {
+  window.SITE_CONFIG = SITE_CONFIG;
+  window.SOCIAL_LINKS = SOCIAL_LINKS;
+  window.getMetaConfig = getMetaConfig;
+  window.createBlogPostSchema = createBlogPostSchema;
+  window.getBlogPostOpenGraph = getBlogPostOpenGraph;
+  window.getBlogPostTwitterCard = getBlogPostTwitterCard;
 }

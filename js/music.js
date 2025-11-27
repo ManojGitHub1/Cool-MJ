@@ -194,13 +194,32 @@ document.addEventListener('DOMContentLoaded', () => {
         playPauseBtnExpanded.innerHTML = `<i class='bx bx-pause'></i>`;
         audioPlayer.play().catch(err => logError("Audio Playback Error:", err));
         
+        // Start autosave and track start time
+        currentSongStartTime = Date.now();
+        stateManager.startAutosave(saveState);
+        
         // Track play event
+        if (typeof gtag === 'function') {
+            gtag('event', 'music_play', {
+                song_title: SONGS[currentSongIndex].title,
+                song_artist: SONGS[currentSongIndex].artist,
+                play_method: 'manual',
+                session_time: Math.round((Date.now() - sessionStartTime) / 1000)
+            });
+            console.log('[Analytics] Music play tracked');
+        }
+    }
+    
     function pauseSong() {
         isPlaying = false;
         widget.classList.remove('playing');
         playPauseBtnCollapsed.innerHTML = `<i class='bx bx-play'></i>`;
         playPauseBtnExpanded.innerHTML = `<i class='bx bx-play'></i>`;
         audioPlayer.pause();
+        
+        // Stop autosave and save current state
+        stateManager.stopAutosave();
+        saveState();
         
         // Track pause event
         if (typeof gtag === 'function') {
@@ -214,8 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             console.log('[Analytics] Music pause tracked:', listenDuration, 'seconds');
         }
-    }           session_time: Math.round((Date.now() - sessionStartTime) / 1000)
-    function togglePlayPause(e) { if(e) e.stopPropagation(); isPlaying ? pauseSong() : playSong(); }
+    }
+    
+    function togglePlayPause(e) { 
+        if(e) e.stopPropagation(); 
+        isPlaying ? pauseSong() : playSong(); 
+    }
     
     function prevSong() {
         // Track skip event
@@ -251,13 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
         playSong();
     }
     
-    function formatTime(seconds) { const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; }
+    function formatTime(seconds) { 
+        const minutes = Math.floor(seconds / 60); 
+        const secs = Math.floor(seconds % 60); 
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; 
     }
-    
-    function togglePlayPause(e) { if(e) e.stopPropagation(); isPlaying ? pauseSong() : playSong(); }
-    function prevSong() { currentSongIndex = (currentSongIndex - 1 + SONGS.length) % SONGS.length; loadSong(SONGS[currentSongIndex]); playSong(); }
-    function nextSong() { currentSongIndex = (currentSongIndex + 1) % SONGS.length; loadSong(SONGS[currentSongIndex]); playSong(); }
-    function formatTime(seconds) { const minutes = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${minutes}:${secs < 10 ? '0' : ''}${secs}`; }
 
     /**
      * Get current player state for persistence
@@ -319,11 +340,40 @@ document.addEventListener('DOMContentLoaded', () => {
             widget.classList.add('playlist-open');
         }
 
-        // Restore playing state (with user interaction requirement)
+        // Restore playing state - Update UI to show paused state
+        // User will need to click play again (browser autoplay policy)
         if (savedState.isPlaying) {
-            // Attempt to auto-resume (may be blocked by browser autoplay policy)
+            // Set UI to paused state (user must manually click play)
+            isPlaying = false;
+            widget.classList.remove('playing');
+            playPauseBtnCollapsed.innerHTML = `<i class='bx bx-play'></i>`;
+            playPauseBtnExpanded.innerHTML = `<i class='bx bx-play'></i>`;
+            
+            // Try to auto-resume, but if blocked, UI is already in correct state
             const attemptAutoPlay = () => {
-                playSong();
+                audioPlayer.play().then(() => {
+                    // Success - update UI to playing state
+                    isPlaying = true;
+                    widget.classList.add('playing');
+                    playPauseBtnCollapsed.innerHTML = `<i class='bx bx-pause'></i>`;
+                    playPauseBtnExpanded.innerHTML = `<i class='bx bx-pause'></i>`;
+                    currentSongStartTime = Date.now();
+                    stateManager.startAutosave(saveState);
+                    
+                    // Track play event
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'music_play', {
+                            song_title: SONGS[currentSongIndex].title,
+                            song_artist: SONGS[currentSongIndex].artist,
+                            play_method: 'auto_resume',
+                            session_time: Math.round((Date.now() - sessionStartTime) / 1000)
+                        });
+                        console.log('[Analytics] Music auto-resume tracked');
+                    }
+                }).catch(err => {
+                    // Failed (autoplay blocked) - UI already shows paused, user can click play
+                    info('Autoplay blocked - click play to resume');
+                });
                 audioPlayer.removeEventListener('loadeddata', attemptAutoPlay);
             };
             audioPlayer.addEventListener('loadeddata', attemptAutoPlay);
@@ -333,6 +383,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateProgress() {
+        if (!audioPlayer || !waveformProgress || !currentTimeEl) return;
+        
         const { duration, currentTime } = audioPlayer;
         if (duration) {
             const progressPercent = (currentTime / duration) * 100;
@@ -342,15 +394,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setProgress(e) {
+        if (!audioPlayer) return;
+        
         const width = this.clientWidth;
         const clickX = e.offsetX;
         const duration = audioPlayer.duration;
-        if (duration) {
-            audioPlayer.currentTime = (clickX / width) * duration;
+        if (duration && !isNaN(duration)) {
+            const newTime = (clickX / width) * duration;
+            audioPlayer.currentTime = Math.max(0, Math.min(newTime, duration));
         }
     }
     
     function setVolume() {
+        if (!audioPlayer || !volumeSlider) return;
+        
         audioPlayer.volume = volumeSlider.value / 100;
         const volumePercent = volumeSlider.value;
         volumeSlider.style.background = `linear-gradient(to right, var(--widget-accent-color) ${volumePercent}%, var(--slider-track-color) ${volumePercent}%)`;

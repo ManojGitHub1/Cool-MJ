@@ -56,8 +56,21 @@ export class ThemeManager {
     
     // Listen for system theme changes
     if (this.respectSystemPreference && window.matchMedia) {
-      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      darkModeQuery.addEventListener('change', this.handleSystemThemeChange);
+      this.darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      this.darkModeQuery.addEventListener('change', this.handleSystemThemeChange);
+    }
+  }
+  
+  /**
+   * Cleanup method to remove event listeners
+   */
+  destroy() {
+    if (this.themeToggle) {
+      this.themeToggle.removeEventListener('click', this.handleToggle);
+    }
+    if (this.darkModeQuery) {
+      this.darkModeQuery.removeEventListener('change', this.handleSystemThemeChange);
+      this.darkModeQuery = null;
     }
   }
 
