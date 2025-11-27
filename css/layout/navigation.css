@@ -28,6 +28,16 @@
   color: #30e3cb;
 }
 
+/* Active page indicator */
+.dev-nav a.active {
+  color: #30e3cb;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(48, 227, 203, 0.6),
+               0 0 20px rgba(48, 227, 203, 0.3);
+  position: relative;
+  pointer-events: none;
+}
+
 /* ===== Dark Mode Navigation ===== */
 body:not(.light-mode) .dev-nav {
   border-color: #132f4c;
@@ -39,6 +49,19 @@ body:not(.light-mode) .dev-nav a {
 
 body:not(.light-mode) .dev-nav a:hover {
   color: #64ffda;
+}
+
+body:not(.light-mode) .dev-nav a.active {
+  color: #30e3cb;
+  text-shadow: 0 0 10px rgba(48, 227, 203, 0.6),
+               0 0 20px rgba(48, 227, 203, 0.3);
+}
+
+body:not(.light-mode) .dev-nav a.active::after {
+  background: #00d9ff;
+  box-shadow: 0 0 15px rgba(0, 217, 255, 1),
+              0 0 30px rgba(0, 217, 255, 1),
+              0 0 45px rgba(0, 217, 255, 0.8);
 }
 
 /* ===== Responsive Navigation ===== */
